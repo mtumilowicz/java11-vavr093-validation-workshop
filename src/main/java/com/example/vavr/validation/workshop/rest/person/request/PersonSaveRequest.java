@@ -1,8 +1,7 @@
 package com.example.vavr.validation.workshop.rest.person.request;
 
+import io.vavr.collection.List;
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * Created by mtumilowicz on 2018-12-09.

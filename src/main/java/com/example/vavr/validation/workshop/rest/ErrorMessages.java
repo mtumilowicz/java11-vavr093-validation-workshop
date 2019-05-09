@@ -1,9 +1,8 @@
 package com.example.vavr.validation.workshop.rest;
 
+import io.vavr.collection.List;
+import io.vavr.collection.Seq;
 import lombok.Value;
-
-import java.util.Collections;
-import java.util.List;
 
 import static io.vavr.API.*;
 import static io.vavr.Predicates.isNull;
@@ -13,12 +12,12 @@ import static io.vavr.Predicates.isNull;
  */
 @Value
 public class ErrorMessages {
-    List<String> messages;
+    Seq<String> messages;
 
-    public static ErrorMessages of(io.vavr.collection.Seq<String> messages) {
+    public static ErrorMessages of(Seq<String> messages) {
         return Match(messages).of(
-                Case($(isNull()), () -> new ErrorMessages(Collections.emptyList())),
-                Case($(), () -> new ErrorMessages(messages.asJava()))
+                Case($(isNull()), () -> new ErrorMessages(List.empty())),
+                Case($(), () -> new ErrorMessages(messages))
         );
     }
 }
