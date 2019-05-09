@@ -21,7 +21,7 @@ public class PersonController {
 
     PersonService personService = new PersonService();
 
-    @PostMapping("/")
+    
     /**
      * {
      *   "address": {
@@ -35,6 +35,7 @@ public class PersonController {
      *   "name": "Alfredzik"
      * }
      */
+    @PostMapping("/save")
     public ResponseEntity save(@RequestBody PersonSaveRequest personSaveRequest) {
         return Match(PersonRequestValidation.validate(personSaveRequest))
                 .of(
