@@ -1,6 +1,5 @@
 package com.example.vavr.validation.workshop.rest;
 
-import com.example.vavr.validation.workshop.person.Person;
 import com.example.vavr.validation.workshop.person.PersonService;
 import com.example.vavr.validation.workshop.rest.person.request.PersonRequestValidation;
 import com.example.vavr.validation.workshop.rest.person.request.PersonSaveRequest;
@@ -39,14 +38,10 @@ public class PersonController {
     public ResponseEntity save(@RequestBody PersonSaveRequest personSaveRequest) {
         return Match(PersonRequestValidation.validate(personSaveRequest))
                 .of(
-                        Case($Valid($()), valid -> ResponseEntity.ok(map(personService.save(valid)))),
+                        Case($Valid($()), valid -> ResponseEntity.ok(
+                                PersonSaveResponse.of(personService.save(valid)))
+                        ),
                         Case($Invalid($()), invalid -> ResponseEntity.badRequest().body(ErrorMessages.of(invalid)))
                 );
-    }
-
-    PersonSaveResponse map(Person person) {
-        return PersonSaveResponse.builder()
-                .id(person.getId().getValue())
-                .build();
     }
 }
