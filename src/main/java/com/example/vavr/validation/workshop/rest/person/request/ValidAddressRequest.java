@@ -1,7 +1,7 @@
 package com.example.vavr.validation.workshop.rest.person.request;
 
-import com.example.vavr.validation.workshop.patterns.PostalCode;
-import com.example.vavr.validation.workshop.patterns.Word;
+import com.example.vavr.validation.workshop.person.patterns.PostalCode;
+import com.example.vavr.validation.workshop.person.patterns.Word;
 import lombok.Builder;
 import lombok.Value;
 

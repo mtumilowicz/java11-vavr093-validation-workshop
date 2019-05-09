@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop.person;
+package com.example.vavr.validation.workshop.person.patterns;
 
 import lombok.Value;
 

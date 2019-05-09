@@ -1,15 +1,15 @@
 package com.example.vavr.validation.workshop.rest.person.request;
 
-import com.example.vavr.validation.workshop.patterns.PostalCode;
-import com.example.vavr.validation.workshop.patterns.Word;
+import com.example.vavr.validation.workshop.person.patterns.PostalCode;
+import com.example.vavr.validation.workshop.person.patterns.Word;
 import io.vavr.collection.Seq;
 import io.vavr.control.Validation;
 
 /**
  * Created by mtumilowicz on 2018-12-09.
  */
-public class AddressRequestValidation {
-    public static Validation<Seq<String>, ValidAddressRequest> validate(AddressRequest request) {
+class AddressRequestValidation {
+    static Validation<Seq<String>, ValidAddressRequest> validate(AddressRequest request) {
 
         return Validation
                 .combine(

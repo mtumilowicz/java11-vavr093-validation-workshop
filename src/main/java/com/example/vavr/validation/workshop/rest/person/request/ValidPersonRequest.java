@@ -1,8 +1,8 @@
 package com.example.vavr.validation.workshop.rest.person.request;
 
-import com.example.vavr.validation.workshop.patterns.Age;
-import com.example.vavr.validation.workshop.patterns.Emails;
-import com.example.vavr.validation.workshop.patterns.Word;
+import com.example.vavr.validation.workshop.person.patterns.Age;
+import com.example.vavr.validation.workshop.person.patterns.Emails;
+import com.example.vavr.validation.workshop.person.patterns.Word;
 import lombok.Builder;
 import lombok.Value;
 

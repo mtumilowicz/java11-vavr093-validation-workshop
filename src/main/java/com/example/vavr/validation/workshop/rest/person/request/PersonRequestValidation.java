@@ -1,9 +1,9 @@
 package com.example.vavr.validation.workshop.rest.person.request;
 
-import com.example.vavr.validation.workshop.patterns.Age;
-import com.example.vavr.validation.workshop.patterns.Email;
-import com.example.vavr.validation.workshop.patterns.Emails;
-import com.example.vavr.validation.workshop.patterns.Word;
+import com.example.vavr.validation.workshop.person.patterns.Age;
+import com.example.vavr.validation.workshop.person.patterns.Email;
+import com.example.vavr.validation.workshop.person.patterns.Emails;
+import com.example.vavr.validation.workshop.person.patterns.Word;
 import com.example.vavr.validation.workshop.validation.NumberValidation;
 import io.vavr.collection.List;
 import io.vavr.collection.Seq;

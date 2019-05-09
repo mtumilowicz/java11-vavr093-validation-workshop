@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop.patterns;
+package com.example.vavr.validation.workshop.person.patterns;
 
 
 import com.google.common.base.Preconditions;
