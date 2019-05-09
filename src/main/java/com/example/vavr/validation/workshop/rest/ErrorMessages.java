@@ -2,7 +2,7 @@ package com.example.vavr.validation.workshop.rest;
 
 import lombok.Value;
 
-import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
 
 import static io.vavr.API.*;
@@ -17,7 +17,7 @@ public class ErrorMessages {
 
     public static ErrorMessages of(io.vavr.collection.Seq<String> messages) {
         return Match(messages).of(
-                Case($(isNull()), () -> new ErrorMessages(new LinkedList<>())),
+                Case($(isNull()), () -> new ErrorMessages(Collections.emptyList())),
                 Case($(), () -> new ErrorMessages(messages.asJava()))
         );
     }
