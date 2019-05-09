@@ -41,12 +41,9 @@ class PersonController {
      */
     @PostMapping("/save")
     public ResponseEntity save(@RequestBody PersonSaveRequest personSaveRequest) {
-        return Match(PersonRequestValidation.validate(personSaveRequest))
-                .of(
-                        Case($Valid($()), valid -> ResponseEntity.ok(
-                                PersonSaveResponse.of(personService.save(valid)))
-                        ),
-                        Case($Invalid($()), invalid -> ResponseEntity.badRequest().body(ErrorMessages.of(invalid)))
-                );
+        return Match(PersonRequestValidation.validate(personSaveRequest)).of(
+                Case($Valid($()), valid -> ResponseEntity.ok(PersonSaveResponse.of(personService.save(valid)))),
+                Case($Invalid($()), invalid -> ResponseEntity.badRequest().body(ErrorMessages.of(invalid)))
+        );
     }
 }
