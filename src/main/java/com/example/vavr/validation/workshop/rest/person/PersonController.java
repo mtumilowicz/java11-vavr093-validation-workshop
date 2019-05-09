@@ -1,6 +1,7 @@
-package com.example.vavr.validation.workshop.rest;
+package com.example.vavr.validation.workshop.rest.person;
 
 import com.example.vavr.validation.workshop.person.PersonService;
+import com.example.vavr.validation.workshop.rest.ErrorMessages;
 import com.example.vavr.validation.workshop.rest.person.request.PersonRequestValidation;
 import com.example.vavr.validation.workshop.rest.person.request.PersonSaveRequest;
 import com.example.vavr.validation.workshop.rest.person.response.PersonSaveResponse;

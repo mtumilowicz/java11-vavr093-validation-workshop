@@ -12,10 +12,10 @@ import static io.vavr.Predicates.isNull;
  * Created by mtumilowicz on 2019-05-09.
  */
 @Value
-class ErrorMessages {
-    final List<String> messages;
+public class ErrorMessages {
+    List<String> messages;
 
-    static ErrorMessages of(io.vavr.collection.Seq<String> messages) {
+    public static ErrorMessages of(io.vavr.collection.Seq<String> messages) {
         return Match(messages).of(
                 Case($(isNull()), () -> new ErrorMessages(new LinkedList<>())),
                 Case($(), () -> new ErrorMessages(messages.asJava()))
