@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop;
+package com.example.vavr.validation.workshop.intrastructure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,5 @@
-package com.example.vavr.validation.workshop.person;
+package com.example.vavr.validation.workshop.rest.person.request;
 
-import com.example.vavr.validation.workshop.address.AddressRequestValidation;
 import com.example.vavr.validation.workshop.patterns.Age;
 import com.example.vavr.validation.workshop.patterns.Email;
 import com.example.vavr.validation.workshop.patterns.Emails;
@@ -14,7 +13,7 @@ import io.vavr.control.Validation;
  * Created by mtumilowicz on 2018-12-09.
  */
 public class PersonRequestValidation {
-    public static Validation<Seq<String>, ValidPersonRequest> validate(PersonRequest request) {
+    public static Validation<Seq<String>, ValidPersonRequest> validate(PersonSaveRequest request) {
 
         return Validation
                 .combine(
