@@ -1,7 +1,9 @@
 package com.example.vavr.validation.workshop;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.vavr.validation.workshop.person.PersonRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingController {
 
-    @RequestMapping("/")
-    public String greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return "hi!";
+    @PostMapping("/")
+    public ResponseEntity<PersonRequest> greeting(@RequestBody PersonRequest personRequest) {
+        return ResponseEntity.ok(personRequest);
     }
 }

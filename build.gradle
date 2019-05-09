@@ -7,11 +7,11 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example.vavr.validation'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-targetCompatibility = '11'
+sourceCompatibility = '8'
+targetCompatibility = '8'
 
 ext {
-    swaggerVersion = '2.8.0'
+    swaggerVersion = '2.9.2'
 }
 
 configurations {
@@ -31,5 +31,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     compile "io.springfox:springfox-swagger2:$swaggerVersion"
     compile "io.springfox:springfox-swagger-ui:$swaggerVersion"
+    compile group: 'io.vavr', name: 'vavr', version: '0.9.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
