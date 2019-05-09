@@ -11,7 +11,7 @@ import lombok.Value;
  */
 @Builder
 @Value
-public class ValidPersonRequest {
+public class ValidPersonSaveRequest {
     Word name;
     ValidAddressRequest address;
     Emails emails;

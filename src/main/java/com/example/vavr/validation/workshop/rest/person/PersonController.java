@@ -1,10 +1,12 @@
 package com.example.vavr.validation.workshop.rest.person;
 
+import com.example.vavr.validation.workshop.person.PersonRequestPatchService;
 import com.example.vavr.validation.workshop.person.PersonService;
 import com.example.vavr.validation.workshop.rest.ErrorMessages;
 import com.example.vavr.validation.workshop.rest.person.request.PersonRequestValidation;
 import com.example.vavr.validation.workshop.rest.person.request.PersonSaveRequest;
 import com.example.vavr.validation.workshop.rest.person.response.PersonSaveResponse;
+import io.vavr.control.Either;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
@@ -24,26 +26,18 @@ import static io.vavr.Patterns.$Valid;
 class PersonController {
 
     PersonService personService = new PersonService();
-
-
-    /**
-     * {
-     * "address": {
-     * "city": "Warsaw",
-     * "postalCode": "00-001"
-     * },
-     * "age": 28
-     * "emails": [
-     * "AlfredHiczkok@hollywood.com"
-     * ],
-     * "name": "Alfredzik"
-     * }
-     */
+    PersonRequestPatchService patchService = new PersonRequestPatchService();
+    
     @PostMapping("/save")
-    public ResponseEntity save(@RequestBody PersonSaveRequest personSaveRequest) {
+    public Either<ResponseEntity<ErrorMessages>, ResponseEntity<PersonSaveResponse>> save(@RequestBody PersonSaveRequest personSaveRequest) {
         return Match(PersonRequestValidation.validate(personSaveRequest)).of(
-                Case($Valid($()), valid -> ResponseEntity.ok(PersonSaveResponse.of(personService.save(valid)))),
-                Case($Invalid($()), invalid -> ResponseEntity.badRequest().body(ErrorMessages.of(invalid)))
+                Case($Valid($()), valid -> Either.right(ResponseEntity.ok(PersonSaveResponse.of(personService.save(valid))))),
+                Case($Invalid($()), invalid -> patchService.patchSaveRequest(personSaveRequest)
+                        .map(personService::save)
+                        .map(PersonSaveResponse::of)
+                        .toEither(ErrorMessages.of(invalid))
+                        .mapLeft(error -> ResponseEntity.badRequest().body(error))
+                        .map(ResponseEntity::ok))
         );
     }
 }
