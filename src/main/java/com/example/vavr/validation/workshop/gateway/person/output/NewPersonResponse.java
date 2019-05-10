@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop.gateway.person.response;
+package com.example.vavr.validation.workshop.gateway.person.output;
 
 import com.example.vavr.validation.workshop.person.patterns.PersonId;
 import lombok.Builder;

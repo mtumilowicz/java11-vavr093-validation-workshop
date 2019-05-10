@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop.gateway.person.request;
+package com.example.vavr.validation.workshop.gateway.person.input;
 
 import io.vavr.collection.List;
 import lombok.Data;
