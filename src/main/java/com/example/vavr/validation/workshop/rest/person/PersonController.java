@@ -4,7 +4,7 @@ import com.example.vavr.validation.workshop.person.PersonRequestPatchService;
 import com.example.vavr.validation.workshop.person.PersonService;
 import com.example.vavr.validation.workshop.rest.ErrorMessages;
 import com.example.vavr.validation.workshop.rest.person.request.PersonRequestValidation;
-import com.example.vavr.validation.workshop.rest.person.request.PersonSaveRequest;
+import com.example.vavr.validation.workshop.rest.person.request.NewPersonRequest;
 import com.example.vavr.validation.workshop.rest.person.response.PersonSaveResponse;
 import io.vavr.control.Either;
 import lombok.AccessLevel;
@@ -29,10 +29,10 @@ class PersonController {
     PersonRequestPatchService patchService = new PersonRequestPatchService();
     
     @PostMapping("/save")
-    public Either<ResponseEntity<ErrorMessages>, ResponseEntity<PersonSaveResponse>> save(@RequestBody PersonSaveRequest personSaveRequest) {
-        return Match(PersonRequestValidation.validate(personSaveRequest)).of(
+    public Either<ResponseEntity<ErrorMessages>, ResponseEntity<PersonSaveResponse>> save(@RequestBody NewPersonRequest newPersonRequest) {
+        return Match(PersonRequestValidation.validate(newPersonRequest)).of(
                 Case($Valid($()), valid -> Either.right(ResponseEntity.ok(PersonSaveResponse.of(personService.save(valid))))),
-                Case($Invalid($()), invalid -> patchService.patchSaveRequest(personSaveRequest)
+                Case($Invalid($()), invalid -> patchService.patchSaveRequest(newPersonRequest)
                         .map(personService::save)
                         .map(PersonSaveResponse::of)
                         .toEither(ErrorMessages.of(invalid))

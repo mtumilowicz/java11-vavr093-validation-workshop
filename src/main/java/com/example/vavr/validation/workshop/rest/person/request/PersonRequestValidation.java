@@ -13,7 +13,7 @@ import io.vavr.control.Validation;
  * Created by mtumilowicz on 2018-12-09.
  */
 public class PersonRequestValidation {
-    public static Validation<Seq<String>, ValidPersonSaveRequest> validate(PersonSaveRequest request) {
+    public static Validation<Seq<String>, NewPersonCommand> validate(NewPersonRequest request) {
 
         return Validation
                 .combine(
@@ -21,7 +21,7 @@ public class PersonRequestValidation {
                         Email.validate(List.ofAll(request.getEmails())).mapError(error -> error.mkString(", ")),
                         AddressRequestValidation.validate(request.getAddress()).mapError(error -> error.mkString(", ")),
                         NumberValidation.positive(request.getAge()))
-                .ap((name, emails, address, age) -> ValidPersonSaveRequest.builder()
+                .ap((name, emails, address, age) -> NewPersonCommand.builder()
                         .name(Word.of(name))
                         .emails(emails.map(Email::of).transform(Emails::new))
                         .address(address)

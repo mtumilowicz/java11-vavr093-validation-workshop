@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by mtumilowicz on 2018-12-09.
  */
 @Data
-class AddressRequest {
+class NewAddressRequest {
     String postalCode;
     String city;
 }

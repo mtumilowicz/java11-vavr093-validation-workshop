@@ -1,7 +1,7 @@
 package com.example.vavr.validation.workshop.person;
 
-import com.example.vavr.validation.workshop.rest.person.request.PersonSaveRequest;
-import com.example.vavr.validation.workshop.rest.person.request.ValidPersonSaveRequest;
+import com.example.vavr.validation.workshop.rest.person.request.NewPersonRequest;
+import com.example.vavr.validation.workshop.rest.person.request.NewPersonCommand;
 import io.vavr.control.Option;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
  */
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class PersonRequestPatchService {
-    public Option<ValidPersonSaveRequest> patchSaveRequest(PersonSaveRequest request) {
+    public Option<NewPersonCommand> patchSaveRequest(NewPersonRequest request) {
         return Option.none();
     }
 }

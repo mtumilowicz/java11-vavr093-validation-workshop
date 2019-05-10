@@ -10,7 +10,7 @@ import lombok.Value;
  */
 @Value
 @Builder
-public class ValidAddressRequest {
+public class NewAddressCommand {
     PostalCode postalCode;
     Word city;
 }

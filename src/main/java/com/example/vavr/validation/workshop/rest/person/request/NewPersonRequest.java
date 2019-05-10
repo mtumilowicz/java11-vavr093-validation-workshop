@@ -8,9 +8,9 @@ import lombok.Data;
  */
 @Data
 public
-class PersonSaveRequest {
+class NewPersonRequest {
     String name;
-    AddressRequest address;
+    NewAddressRequest address;
     List<String> emails;
     int age;
 }

@@ -1,7 +1,7 @@
 package com.example.vavr.validation.workshop.person;
 
 import com.example.vavr.validation.workshop.intrastructure.ModelMapperConfig;
-import com.example.vavr.validation.workshop.rest.person.request.ValidPersonSaveRequest;
+import com.example.vavr.validation.workshop.rest.person.request.NewPersonCommand;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.modelmapper.ModelMapper;
@@ -14,11 +14,11 @@ public class PersonService {
     PersonRepository personRepository = new PersonRepository();
     ModelMapper mapper = ModelMapperConfig.directFieldMapper();
 
-    public Person save(ValidPersonSaveRequest validPersonSaveRequest) {
-        return personRepository.save(mapToPerson(validPersonSaveRequest));
+    public Person save(NewPersonCommand newPersonCommand) {
+        return personRepository.save(mapToPerson(newPersonCommand));
     }
 
-    private Person mapToPerson(ValidPersonSaveRequest validPersonSaveRequest) {
-        return mapper.map(validPersonSaveRequest, Person.PersonBuilder.class).build();
+    private Person mapToPerson(NewPersonCommand newPersonCommand) {
+        return mapper.map(newPersonCommand, Person.PersonBuilder.class).build();
     }
 }
