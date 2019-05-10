@@ -1,5 +1,6 @@
 package com.example.vavr.validation.workshop.gateway.person.input;
 
+import com.example.vavr.validation.workshop.person.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.patterns.Age;
 import com.example.vavr.validation.workshop.person.patterns.Email;
 import com.example.vavr.validation.workshop.person.patterns.Emails;

@@ -1,7 +1,6 @@
 package com.example.vavr.validation.workshop.person;
 
 import com.example.vavr.validation.workshop.gateway.person.input.NewPersonRequest;
-import com.example.vavr.validation.workshop.gateway.person.input.NewPersonCommand;
 import io.vavr.control.Option;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

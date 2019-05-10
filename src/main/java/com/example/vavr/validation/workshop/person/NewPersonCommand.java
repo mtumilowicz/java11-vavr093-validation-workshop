@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop.gateway.person.input;
+package com.example.vavr.validation.workshop.person;
 
 import com.example.vavr.validation.workshop.person.patterns.Address;
 import com.example.vavr.validation.workshop.person.patterns.Age;
