@@ -1,6 +1,5 @@
-package com.example.vavr.validation.workshop.person;
+package com.example.vavr.validation.workshop.person.domain;
 
-import com.example.vavr.validation.workshop.person.patterns.Address;
 import com.example.vavr.validation.workshop.person.patterns.PersonId;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop.person;
+package com.example.vavr.validation.workshop.person.domain;
 
 import com.example.vavr.validation.workshop.person.patterns.PostalCode;
 import com.example.vavr.validation.workshop.person.patterns.Word;

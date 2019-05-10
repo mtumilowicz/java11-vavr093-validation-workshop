@@ -1,9 +1,11 @@
 package com.example.vavr.validation.workshop.person.gateway.input;
 
-import com.example.vavr.validation.workshop.person.NewAddressCommand;
-import com.example.vavr.validation.workshop.person.NewPersonCommand;
-import com.example.vavr.validation.workshop.person.patterns.*;
 import com.example.vavr.validation.workshop.intrastructure.validator.NumberValidator;
+import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
+import com.example.vavr.validation.workshop.person.patterns.Age;
+import com.example.vavr.validation.workshop.person.patterns.Email;
+import com.example.vavr.validation.workshop.person.patterns.Emails;
+import com.example.vavr.validation.workshop.person.patterns.Word;
 import io.vavr.collection.List;
 import io.vavr.collection.Seq;
 import io.vavr.control.Validation;
@@ -23,15 +25,8 @@ public class NewPersonRequestValidator {
                 .ap((name, emails, address, age) -> NewPersonCommand.builder()
                         .name(Word.of(name))
                         .emails(emails.map(Email::of).transform(Emails::new))
-                        .address(mapToNewAddressCommand(address))
+                        .address(address)
                         .age(Age.of(age))
                         .build());
-    }
-    
-    private static  NewAddressCommand mapToNewAddressCommand(Address address) {
-        return NewAddressCommand.builder()
-                .city(address.getCity())
-                .postalCode(address.getPostalCode())
-                .build();
     }
 }

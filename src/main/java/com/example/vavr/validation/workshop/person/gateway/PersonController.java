@@ -1,9 +1,9 @@
 package com.example.vavr.validation.workshop.person.gateway;
 
 import com.example.vavr.validation.workshop.intrastructure.ErrorMessages;
-import com.example.vavr.validation.workshop.person.NewPersonCommand;
-import com.example.vavr.validation.workshop.person.PersonRequestPatchService;
-import com.example.vavr.validation.workshop.person.PersonService;
+import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
+import com.example.vavr.validation.workshop.person.domain.PersonRequestPatchService;
+import com.example.vavr.validation.workshop.person.domain.PersonService;
 import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequest;
 import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequestValidator;
 import com.example.vavr.validation.workshop.person.gateway.output.NewPersonResponse;
