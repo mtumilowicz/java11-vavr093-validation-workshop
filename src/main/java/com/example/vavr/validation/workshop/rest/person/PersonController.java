@@ -3,9 +3,11 @@ package com.example.vavr.validation.workshop.rest.person;
 import com.example.vavr.validation.workshop.person.PersonRequestPatchService;
 import com.example.vavr.validation.workshop.person.PersonService;
 import com.example.vavr.validation.workshop.rest.ErrorMessages;
+import com.example.vavr.validation.workshop.rest.person.request.NewPersonCommand;
 import com.example.vavr.validation.workshop.rest.person.request.NewPersonRequest;
 import com.example.vavr.validation.workshop.rest.person.request.PersonRequestValidation;
 import com.example.vavr.validation.workshop.rest.person.response.NewPersonResponse;
+import io.vavr.collection.Seq;
 import io.vavr.control.Either;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -27,16 +29,26 @@ class PersonController {
     PersonService personService = new PersonService();
     PersonRequestPatchService patchService = new PersonRequestPatchService();
 
-    @PostMapping("/save")
-    public Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> save(@RequestBody NewPersonRequest newPersonRequest) {
+    @PostMapping("/person/new")
+    public Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> newPerson(
+            @RequestBody NewPersonRequest newPersonRequest) {
         return Match(PersonRequestValidation.validate(newPersonRequest)).of(
-                Case($Valid($()), valid -> Either.right(ResponseEntity.ok(NewPersonResponse.of(personService.save(valid))))),
-                Case($Invalid($()), invalid ->
-                        Match(patchService.patchSaveRequest(newPersonRequest)).of(
-                                Case($Some($()), person -> Either.right(ResponseEntity.ok(NewPersonResponse.of(personService.save(person))))),
-                                Case($None(), () -> Either.left(ResponseEntity.badRequest().body(ErrorMessages.of(invalid))))
-                        )
-                )
+                Case($Valid($()), this::newPersonCommand),
+                Case($Invalid($()), errors -> patchNewPersonCommand(newPersonRequest, errors))
+        );
+    }
+
+    private Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> newPersonCommand(
+            NewPersonCommand command) {
+        return Either.right(ResponseEntity.ok(NewPersonResponse.of(personService.save(command))));
+    }
+
+    private Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> patchNewPersonCommand(
+            NewPersonRequest newPersonRequest,
+            Seq<String> errors) {
+        return Match(patchService.patchSaveRequest(newPersonRequest)).of(
+                Case($Some($()), this::newPersonCommand),
+                Case($None(), () -> Either.left(ResponseEntity.badRequest().body(ErrorMessages.of(errors))))
         );
     }
 }
