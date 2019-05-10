@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop.gateway;
+package com.example.vavr.validation.workshop.intrastructure;
 
 import io.vavr.collection.List;
 import io.vavr.collection.Seq;

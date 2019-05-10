@@ -1,4 +1,4 @@
-package com.example.vavr.validation.workshop.validator;
+package com.example.vavr.validation.workshop.intrastructure.validator;
 
 import io.vavr.control.Validation;
 
