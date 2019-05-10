@@ -10,6 +10,7 @@ import com.example.vavr.validation.workshop.person.gateway.output.NewPersonRespo
 import io.vavr.collection.Seq;
 import io.vavr.control.Either;
 import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +25,11 @@ import static io.vavr.Patterns.*;
  */
 @RestController
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 class PersonController {
 
-    PersonService personService = new PersonService();
-    PersonRequestPatchService patchService = new PersonRequestPatchService();
+    PersonService personService;
+    PersonRequestPatchService patchService;
 
     @PostMapping("/person/new")
     public Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> newPerson(
