@@ -1,8 +1,8 @@
 package com.example.vavr.validation.workshop.person;
 
+import com.example.vavr.validation.workshop.gateway.person.request.NewPersonCommand;
 import com.example.vavr.validation.workshop.intrastructure.ModelMapperConfig;
 import com.example.vavr.validation.workshop.person.patterns.PersonId;
-import com.example.vavr.validation.workshop.gateway.person.request.NewPersonCommand;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.modelmapper.ModelMapper;

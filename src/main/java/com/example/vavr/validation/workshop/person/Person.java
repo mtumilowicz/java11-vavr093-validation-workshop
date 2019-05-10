@@ -1,10 +1,6 @@
 package com.example.vavr.validation.workshop.person;
 
-import com.example.vavr.validation.workshop.person.patterns.Age;
-import com.example.vavr.validation.workshop.person.patterns.Emails;
-import com.example.vavr.validation.workshop.person.patterns.PersonId;
-import com.example.vavr.validation.workshop.person.patterns.Word;
-import com.example.vavr.validation.workshop.gateway.person.request.NewAddressCommand;
+import com.example.vavr.validation.workshop.person.patterns.*;
 import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.Wither;
@@ -18,7 +14,7 @@ import lombok.experimental.Wither;
 class Person {
     PersonId id;
     Word name;
-    NewAddressCommand address;
+    Address address;
     Emails emails;
     Age age;
 }
