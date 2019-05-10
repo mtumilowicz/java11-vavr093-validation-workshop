@@ -1,10 +1,9 @@
 package com.example.vavr.validation.workshop.person;
 
-import com.example.vavr.validation.workshop.intrastructure.ModelMapperConfig;
+import com.example.vavr.validation.workshop.person.patterns.Address;
 import com.example.vavr.validation.workshop.person.patterns.PersonId;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import org.modelmapper.ModelMapper;
 
 /**
  * Created by mtumilowicz on 2019-05-09.
@@ -12,13 +11,20 @@ import org.modelmapper.ModelMapper;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class PersonService {
     PersonRepository personRepository = new PersonRepository();
-    ModelMapper mapper = ModelMapperConfig.directFieldMapper();
 
     public PersonId save(NewPersonCommand newPersonCommand) {
         return personRepository.save(mapToPerson(newPersonCommand)).getId();
     }
 
     private Person mapToPerson(NewPersonCommand newPersonCommand) {
-        return mapper.map(newPersonCommand, Person.PersonBuilder.class).build();
+        return Person.builder()
+                .name(newPersonCommand.getName())
+                .age(newPersonCommand.getAge())
+                .address(Address.builder()
+                        .city(newPersonCommand.getAddress().getCity())
+                        .postalCode(newPersonCommand.getAddress().getPostalCode())
+                        .build())
+                .emails(newPersonCommand.getEmails())
+                .build();
     }
 }

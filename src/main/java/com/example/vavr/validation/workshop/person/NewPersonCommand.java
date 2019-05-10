@@ -1,6 +1,5 @@
 package com.example.vavr.validation.workshop.person;
 
-import com.example.vavr.validation.workshop.person.patterns.Address;
 import com.example.vavr.validation.workshop.person.patterns.Age;
 import com.example.vavr.validation.workshop.person.patterns.Emails;
 import com.example.vavr.validation.workshop.person.patterns.Word;
@@ -14,7 +13,7 @@ import lombok.Value;
 @Value
 public class NewPersonCommand {
     Word name;
-    Address address;
+    NewAddressCommand address;
     Emails emails;
     Age age;
 }
