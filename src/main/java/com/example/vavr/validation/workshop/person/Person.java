@@ -15,7 +15,7 @@ import lombok.experimental.Wither;
 @Value
 @Builder
 @Wither
-public class Person {
+class Person {
     PersonId id;
     Word name;
     NewAddressCommand address;
