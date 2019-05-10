@@ -5,7 +5,7 @@ import com.example.vavr.validation.workshop.person.PersonService;
 import com.example.vavr.validation.workshop.gateway.ErrorMessages;
 import com.example.vavr.validation.workshop.gateway.person.input.NewPersonCommand;
 import com.example.vavr.validation.workshop.gateway.person.input.NewPersonRequest;
-import com.example.vavr.validation.workshop.gateway.person.input.PersonRequestValidation;
+import com.example.vavr.validation.workshop.gateway.person.input.NewPersonRequestValidator;
 import com.example.vavr.validation.workshop.gateway.person.output.NewPersonResponse;
 import io.vavr.collection.Seq;
 import io.vavr.control.Either;
@@ -32,7 +32,7 @@ class PersonController {
     @PostMapping("/person/new")
     public Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> newPerson(
             @RequestBody NewPersonRequest newPersonRequest) {
-        return Match(PersonRequestValidation.validate(newPersonRequest)).of(
+        return Match(NewPersonRequestValidator.validate(newPersonRequest)).of(
                 Case($Valid($()), this::newPersonCommand),
                 Case($Invalid($()), errors -> patchNewPersonCommand(newPersonRequest, errors))
         );

@@ -9,7 +9,7 @@ import io.vavr.control.Validation;
 /**
  * Created by mtumilowicz on 2018-12-09.
  */
-class AddressRequestValidation {
+class NewAddressRequestValidator {
     static Validation<Seq<String>, Address> validate(NewAddressRequest request) {
 
         return Validation

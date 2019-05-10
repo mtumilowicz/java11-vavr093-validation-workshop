@@ -1,11 +1,11 @@
-package com.example.vavr.validation.workshop.validation;
+package com.example.vavr.validation.workshop.validator;
 
 import io.vavr.control.Validation;
 
 /**
  * Created by mtumilowicz on 2018-12-09.
  */
-public class NumberValidation {
+public class NumberValidator {
     public static Validation<String, Integer> positive(int number) {
         return number > 0
                 ? Validation.valid(number)
