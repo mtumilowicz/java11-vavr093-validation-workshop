@@ -1,12 +1,12 @@
-package com.example.vavr.validation.workshop.rest.person;
+package com.example.vavr.validation.workshop.gateway.person;
 
 import com.example.vavr.validation.workshop.person.PersonRequestPatchService;
 import com.example.vavr.validation.workshop.person.PersonService;
-import com.example.vavr.validation.workshop.rest.ErrorMessages;
-import com.example.vavr.validation.workshop.rest.person.request.NewPersonCommand;
-import com.example.vavr.validation.workshop.rest.person.request.NewPersonRequest;
-import com.example.vavr.validation.workshop.rest.person.request.PersonRequestValidation;
-import com.example.vavr.validation.workshop.rest.person.response.NewPersonResponse;
+import com.example.vavr.validation.workshop.gateway.ErrorMessages;
+import com.example.vavr.validation.workshop.gateway.person.request.NewPersonCommand;
+import com.example.vavr.validation.workshop.gateway.person.request.NewPersonRequest;
+import com.example.vavr.validation.workshop.gateway.person.request.PersonRequestValidation;
+import com.example.vavr.validation.workshop.gateway.person.response.NewPersonResponse;
 import io.vavr.collection.Seq;
 import io.vavr.control.Either;
 import lombok.AccessLevel;

@@ -4,7 +4,7 @@ import com.example.vavr.validation.workshop.person.patterns.Age;
 import com.example.vavr.validation.workshop.person.patterns.Emails;
 import com.example.vavr.validation.workshop.person.patterns.PersonId;
 import com.example.vavr.validation.workshop.person.patterns.Word;
-import com.example.vavr.validation.workshop.rest.person.request.NewAddressCommand;
+import com.example.vavr.validation.workshop.gateway.person.request.NewAddressCommand;
 import lombok.Builder;
 import lombok.Value;
 import lombok.experimental.Wither;
