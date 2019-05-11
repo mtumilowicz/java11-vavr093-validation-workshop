@@ -17,8 +17,8 @@ class NewAddressRequestValidator {
                         City.validate(request.getCity()),
                         PostalCode.validate(request.getPostalCode()))
                 .ap((city, postalCode) -> NewAddressCommand.builder()
-                        .city(City.of(city))
-                        .postalCode(PostalCode.of(postalCode))
+                        .city(city)
+                        .postalCode(postalCode)
                         .build());
     }
 }

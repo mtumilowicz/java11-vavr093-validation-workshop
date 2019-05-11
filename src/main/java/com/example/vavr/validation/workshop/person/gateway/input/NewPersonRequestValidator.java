@@ -3,7 +3,6 @@ package com.example.vavr.validation.workshop.person.gateway.input;
 import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.patterns.Age;
 import com.example.vavr.validation.workshop.person.patterns.Email;
-import com.example.vavr.validation.workshop.person.patterns.Emails;
 import com.example.vavr.validation.workshop.person.patterns.Name;
 import io.vavr.collection.List;
 import io.vavr.collection.Seq;
@@ -22,10 +21,10 @@ public class NewPersonRequestValidator {
                         NewAddressRequestValidator.validate(request.getAddress()).mapError(error -> error.mkString(", ")),
                         Age.validate(request.getAge()))
                 .ap((name, emails, address, age) -> NewPersonCommand.builder()
-                        .name(Name.of(name))
-                        .emails(emails.map(Email::of).transform(Emails::new))
+                        .name(name)
+                        .emails(emails)
                         .address(address)
-                        .age(Age.of(age))
+                        .age(age)
                         .build());
     }
 }

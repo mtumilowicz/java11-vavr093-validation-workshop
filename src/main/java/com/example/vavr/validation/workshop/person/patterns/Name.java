@@ -28,9 +28,9 @@ public class Name {
         return new Name(name);
     }
 
-    public static Validation<String, String> validate(String name) {
+    public static Validation<String, Name> validate(String name) {
         return VALIDATOR.test(name)
-                ? Validation.valid(name)
+                ? Validation.valid(of(name))
                 : Validation.invalid(name + " is not a proper name!");
     }
 }

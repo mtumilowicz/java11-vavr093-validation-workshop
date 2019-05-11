@@ -30,10 +30,10 @@ public class Email {
         return new Email(email);
     }
 
-    public static Validation<List<String>, List<String>> validate(List<String> emails) {
+    public static Validation<List<String>, Emails> validate(List<String> emails) {
         return emails.partition(VALIDATOR)
                 .apply((successes, failures) -> failures.isEmpty()
-                        ? Validation.valid(successes)
+                        ? Validation.valid(successes.map(Email::of).transform(Emails::new))
                         : Validation.invalid(failures.map(email -> email + " is not a valid email!")));
     }
 }

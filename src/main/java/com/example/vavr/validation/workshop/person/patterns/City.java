@@ -27,9 +27,9 @@ public class City {
         return new City(city);
     }
 
-    public static Validation<String, String> validate(String city) {
+    public static Validation<String, City> validate(String city) {
         return VALIDATOR.test(city)
-                ? Validation.valid(city)
+                ? Validation.valid(of(city))
                 : Validation.invalid(city + " is not a proper city!");
     }
 }

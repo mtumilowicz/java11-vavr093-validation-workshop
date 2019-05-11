@@ -27,9 +27,9 @@ public class PostalCode {
         return new PostalCode(postalCode);
     }
 
-    public static Validation<String, String> validate(String postalCode) {
+    public static Validation<String, PostalCode> validate(String postalCode) {
         return VALIDATOR.test(postalCode)
-                ? Validation.valid(postalCode)
+                ? Validation.valid(of(postalCode))
                 : Validation.invalid(postalCode + " is not a proper postal code!");
     }
 }
