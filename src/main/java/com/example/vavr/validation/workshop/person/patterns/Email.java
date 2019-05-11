@@ -33,7 +33,7 @@ public class Email {
     public static Validation<List<String>, Emails> validate(List<String> emails) {
         return emails.partition(VALIDATOR)
                 .apply((successes, failures) -> failures.isEmpty()
-                        ? Validation.valid(successes.map(Email::of).transform(Emails::new))
+                        ? Validation.valid(successes.map(Email::new).transform(Emails::new))
                         : Validation.invalid(failures.map(email -> email + " is not a valid email!")));
     }
 }

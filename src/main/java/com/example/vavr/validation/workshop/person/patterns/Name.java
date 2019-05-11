@@ -30,7 +30,7 @@ public class Name {
 
     public static Validation<String, Name> validate(String name) {
         return VALIDATOR.test(name)
-                ? Validation.valid(of(name))
+                ? Validation.valid(new Name(name))
                 : Validation.invalid(name + " is not a proper name!");
     }
 }
