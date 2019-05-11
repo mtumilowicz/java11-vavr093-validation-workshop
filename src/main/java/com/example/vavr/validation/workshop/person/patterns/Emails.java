@@ -11,7 +11,7 @@ import lombok.Value;
 public class Emails {
     List<Email> emails;
 
-    public Emails(@NonNull List<Email> emails) {
+    Emails(@NonNull List<Email> emails) {
         this.emails = emails;
     }
 }
