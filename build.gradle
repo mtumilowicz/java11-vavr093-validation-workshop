@@ -8,8 +8,8 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example.vavr.validation'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '8'
-targetCompatibility = '8'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 configurations {
     compileOnly {
