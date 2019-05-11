@@ -13,7 +13,7 @@ import lombok.experimental.Wither;
 @Wither
 class Person {
     PersonId id;
-    Word name;
+    Name name;
     Address address;
     Emails emails;
     Age age;
