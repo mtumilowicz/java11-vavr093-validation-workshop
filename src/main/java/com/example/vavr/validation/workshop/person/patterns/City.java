@@ -30,6 +30,6 @@ public class City {
     public static Validation<String, String> validate(String word) {
         return VALIDATOR.test(word)
                 ? Validation.valid(word)
-                : Validation.invalid(word + " is not a proper word!");
+                : Validation.invalid(word + " is not a proper city!");
     }
 }
