@@ -32,7 +32,7 @@ class PersonController {
     PersonRequestPatchService patchService;
 
     @PostMapping("/person/new")
-    public Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> newPerson(
+    public ResponseEntity<Either<ErrorMessages, NewPersonResponse>> newPerson(
             @RequestBody NewPersonRequest newPersonRequest) {
         return Match(NewPersonRequestValidator.validate(newPersonRequest)).of(
                 Case($Valid($()), this::newPersonCommand),
@@ -40,17 +40,17 @@ class PersonController {
         );
     }
 
-    private Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> newPersonCommand(
+    private ResponseEntity<Either<ErrorMessages, NewPersonResponse>> newPersonCommand(
             NewPersonCommand command) {
-        return Either.right(ResponseEntity.ok(NewPersonResponse.of(personService.save(command))));
+        return ResponseEntity.ok(Either.right(NewPersonResponse.of(personService.save(command))));
     }
 
-    private Either<ResponseEntity<ErrorMessages>, ResponseEntity<NewPersonResponse>> patchNewPersonCommand(
+    private ResponseEntity<Either<ErrorMessages, NewPersonResponse>> patchNewPersonCommand(
             NewPersonRequest newPersonRequest,
             Seq<String> errors) {
         return Match(patchService.patchSaveRequest(newPersonRequest)).of(
                 Case($Some($()), this::newPersonCommand),
-                Case($None(), () -> Either.left(ResponseEntity.badRequest().body(ErrorMessages.of(errors))))
+                Case($None(), () -> ResponseEntity.badRequest().body(Either.left(ErrorMessages.of(errors))))
         );
     }
 }

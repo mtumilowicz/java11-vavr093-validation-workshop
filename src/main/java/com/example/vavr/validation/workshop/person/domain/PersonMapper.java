@@ -10,8 +10,7 @@ class PersonMapper {
         return Person.builder()
                 .name(command.getName())
                 .age(command.getAge())
-                .address(AddressMapper.mapFrom(command.getAddress())
-                        .getOrElse(Address.builder().build()))
+                .address(AddressMapper.mapFrom(command.getAddress()))
                 .emails(command.getEmails())
                 .build();
     }
