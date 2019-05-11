@@ -1,6 +1,5 @@
 package com.example.vavr.validation.workshop.person.gateway.input;
 
-import com.example.vavr.validation.workshop.intrastructure.validator.NumberValidator;
 import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.patterns.Age;
 import com.example.vavr.validation.workshop.person.patterns.Email;
@@ -21,7 +20,7 @@ public class NewPersonRequestValidator {
                         Name.validate(request.getName()),
                         Email.validate(List.ofAll(request.getEmails())).mapError(error -> error.mkString(", ")),
                         NewAddressRequestValidator.validate(request.getAddress()).mapError(error -> error.mkString(", ")),
-                        NumberValidator.positive(request.getAge()))
+                        Age.validate(request.getAge()))
                 .ap((name, emails, address, age) -> NewPersonCommand.builder()
                         .name(Name.of(name))
                         .emails(emails.map(Email::of).transform(Emails::new))
