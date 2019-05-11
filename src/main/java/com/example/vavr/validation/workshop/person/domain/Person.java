@@ -13,14 +13,17 @@ import lombok.experimental.Wither;
 @Builder
 @Wither
 class Person {
-    @NonNull
     PersonId id;
+    
     @NonNull
     Name name;
+    
     @NonNull
     Address address;
+    
     @NonNull
     Emails emails;
+    
     @NonNull
     Age age;
 }
