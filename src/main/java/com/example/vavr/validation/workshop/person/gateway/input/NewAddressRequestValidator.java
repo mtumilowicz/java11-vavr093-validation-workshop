@@ -3,7 +3,6 @@ package com.example.vavr.validation.workshop.person.gateway.input;
 import com.example.vavr.validation.workshop.person.domain.NewAddressCommand;
 import com.example.vavr.validation.workshop.person.patterns.City;
 import com.example.vavr.validation.workshop.person.patterns.PostalCode;
-import com.example.vavr.validation.workshop.person.patterns.Word;
 import io.vavr.collection.Seq;
 import io.vavr.control.Validation;
 
@@ -15,7 +14,7 @@ class NewAddressRequestValidator {
 
         return Validation
                 .combine(
-                        Word.validate(request.getCity()),
+                        City.validate(request.getCity()),
                         PostalCode.validate(request.getPostalCode()))
                 .ap((city, postalCode) -> NewAddressCommand.builder()
                         .city(City.of(city))
