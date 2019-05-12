@@ -4,21 +4,24 @@ import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.patterns.Age;
 import com.example.vavr.validation.workshop.person.patterns.Email;
 import com.example.vavr.validation.workshop.person.patterns.Name;
-import io.vavr.collection.List;
 import io.vavr.collection.Seq;
 import io.vavr.control.Validation;
+
+import java.util.function.Function;
 
 /**
  * Created by mtumilowicz on 2018-12-09.
  */
 public class NewPersonRequestValidator {
+    private static Function<Seq<String>, String> concatByComma = strings -> strings.mkString(", ");
+    
     public static Validation<Seq<String>, NewPersonCommand> validate(NewPersonRequest request) {
 
         return Validation
                 .combine(
                         Name.validate(request.getName()),
-                        Email.validate(List.ofAll(request.getEmails())).mapError(error -> error.mkString(", ")),
-                        NewAddressRequestValidator.validate(request.getAddress()).mapError(error -> error.mkString(", ")),
+                        Email.validate(request.getEmails()).mapError(concatByComma),
+                        NewAddressRequestValidator.validate(request.getAddress()).mapError(concatByComma),
                         Age.validate(request.getAge()))
                 .ap((name, emails, address, age) -> NewPersonCommand.builder()
                         .name(name)

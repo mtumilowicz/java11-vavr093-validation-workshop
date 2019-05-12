@@ -32,7 +32,6 @@ import static org.junit.Assert.assertTrue;
 /*
 to do tests:
 1. PersonService
-1. NewPersonRequestValidator
 1. PersonController
  */
 public class PersonControllerTest {
