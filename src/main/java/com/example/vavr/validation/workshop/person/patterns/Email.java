@@ -7,6 +7,7 @@ import io.vavr.control.Validation;
 import lombok.NonNull;
 import lombok.Value;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
@@ -17,6 +18,8 @@ import java.util.regex.Pattern;
 public class Email {
     public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w._%+-]+@[\\w.-]+\\.[\\w]{2,}")
             .asPredicate();
+    
+    private static final Function<String, String> errorMessage = email -> "Email: " + email + " is not a valid email!";
 
     String email;
 
@@ -34,6 +37,6 @@ public class Email {
         return emails.partition(VALIDATOR)
                 .apply((successes, failures) -> failures.isEmpty()
                         ? Validation.valid(successes.map(Email::new).transform(Emails::new))
-                        : Validation.invalid(failures.map(email -> email + " is not a valid email!")));
+                        : Validation.invalid(failures.map(errorMessage)));
     }
 }
