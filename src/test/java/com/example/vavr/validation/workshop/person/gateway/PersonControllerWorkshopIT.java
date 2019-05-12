@@ -29,7 +29,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PersonControllerIT {
+public class PersonControllerWorkshopIT {
 
     @Autowired
     TestRestTemplate restTemplate;
@@ -54,7 +54,7 @@ public class PersonControllerIT {
                 .build();
 //        when
         var body = Objects.requireNonNull(restTemplate.exchange(
-                createURLWithPort("person/new"),
+                createURLWithPort("answer/person/new"),
                 HttpMethod.POST,
                 new HttpEntity<>(request),
                 responseType).getBody());
@@ -81,7 +81,7 @@ public class PersonControllerIT {
                 .build();
 //        when
         var body = Objects.requireNonNull(restTemplate.exchange(
-                createURLWithPort("person/new"),
+                createURLWithPort("answer/person/new"),
                 HttpMethod.POST,
                 new HttpEntity<>(request),
                 responseType).getBody());

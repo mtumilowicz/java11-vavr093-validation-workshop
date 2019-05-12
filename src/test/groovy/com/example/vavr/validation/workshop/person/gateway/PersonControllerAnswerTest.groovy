@@ -15,7 +15,7 @@ import spock.lang.Specification
 /**
  * Created by mtumilowicz on 2019-05-12.
  */
-class PersonControllerTest extends Specification {
+class PersonControllerAnswerTest extends Specification {
 
     def "test newPerson - valid request"() {
         given:
@@ -29,7 +29,7 @@ class PersonControllerTest extends Specification {
                         .build())
                 .build()
 
-        def controller = new PersonController(
+        def controller = new PersonControllerAnswer(
                 new PersonService(new PersonRepository()),
                 new PersonRequestPatchService())
 
@@ -52,7 +52,7 @@ class PersonControllerTest extends Specification {
                         .build())
                 .build()
 
-        def controller = new PersonController(
+        def controller = new PersonControllerAnswer(
                 new PersonService(new PersonRepository()),
                 new PersonRequestPatchService())
 

@@ -26,12 +26,12 @@ import static io.vavr.Patterns.*;
 @RestController
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
-class PersonController {
+class PersonControllerWorkshop {
 
     PersonService personService;
     PersonRequestPatchService patchService;
 
-    @PostMapping("/person/new")
+    @PostMapping("workshop/person/new")
     public ResponseEntity<Either<ErrorMessages, NewPersonResponse>> newPerson(
             @RequestBody NewPersonRequest newPersonRequest) {
         return Match(NewPersonRequestValidator.validate(newPersonRequest)).of(
