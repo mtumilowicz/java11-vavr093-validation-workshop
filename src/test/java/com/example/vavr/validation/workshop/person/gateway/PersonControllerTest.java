@@ -93,7 +93,7 @@ public class PersonControllerTest {
                 "* is not a valid name!", 
                 "a is not a valid email!", 
                 "$ is not a valid city!, * is not a valid postal code!", 
-                "-1 is not > 0")));
+                "Age: -1 is not > 0")));
     }
     
     private String createURLWithPort(String uri) {

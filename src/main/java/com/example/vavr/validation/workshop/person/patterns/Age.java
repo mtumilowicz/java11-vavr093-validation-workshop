@@ -28,6 +28,6 @@ public class Age {
     public static Validation<String, Age> validate(int age) {
         return VALIDATOR.test(age)
                 ? Validation.valid(new Age(age))
-                : Validation.invalid(age + " is not > 0");
+                : Validation.invalid("Age: " + age + " is not > 0");
     }
 }
