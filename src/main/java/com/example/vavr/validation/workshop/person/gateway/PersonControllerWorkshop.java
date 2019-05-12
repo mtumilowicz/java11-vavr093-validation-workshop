@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static io.vavr.API.*;
-import static io.vavr.Patterns.*;
-
 /**
  * Created by mtumilowicz on 2019-05-08.
  */
@@ -31,13 +28,21 @@ class PersonControllerWorkshop {
     PersonService personService;
     PersonRequestPatchService patchService;
 
+    /**
+     * rewrite using pattern matching
+     * <p>
+     * hints - useful methods:
+     * Match(validation).of
+     * Case($Valid($()), ...)
+     * Case($Invalid($()), ...)
+     */
     @PostMapping("workshop/person/new")
     public ResponseEntity<Either<ErrorMessages, NewPersonResponse>> newPerson(
             @RequestBody NewPersonRequest newPersonRequest) {
-        return Match(NewPersonRequestValidator.validate(newPersonRequest)).of(
-                Case($Valid($()), this::newPersonCommand),
-                Case($Invalid($()), errors -> patchNewPersonCommand(newPersonRequest, errors))
-        );
+        var validation = NewPersonRequestValidator.validate(newPersonRequest);
+        return validation.isValid()
+                ? newPersonCommand(validation.get())
+                : patchNewPersonCommand(newPersonRequest, validation.getError());
     }
 
     private ResponseEntity<Either<ErrorMessages, NewPersonResponse>> newPersonCommand(
@@ -45,12 +50,20 @@ class PersonControllerWorkshop {
         return ResponseEntity.ok(Either.right(NewPersonResponse.of(personService.save(command))));
     }
 
+    /**
+     * rewrite using pattern matching
+     *
+     * hints - useful methods:
+     * Match(validation).of
+     * Case($Some($()), ...)
+     * Case($None(), ...)
+     */
     private ResponseEntity<Either<ErrorMessages, NewPersonResponse>> patchNewPersonCommand(
             NewPersonRequest newPersonRequest,
             Seq<String> errors) {
-        return Match(patchService.patchSaveRequest(newPersonRequest)).of(
-                Case($Some($()), this::newPersonCommand),
-                Case($None(), () -> ResponseEntity.badRequest().body(Either.left(ErrorMessages.of(errors))))
-        );
+
+        return patchService.patchSaveRequest(newPersonRequest)
+                .map(this::newPersonCommand)
+                .getOrElse(() -> ResponseEntity.badRequest().body(Either.left(ErrorMessages.of(errors))));
     }
 }
