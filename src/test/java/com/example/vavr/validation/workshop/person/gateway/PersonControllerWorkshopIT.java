@@ -16,6 +16,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Objects;
@@ -53,13 +54,15 @@ public class PersonControllerWorkshopIT {
                         .build())
                 .build();
 //        when
-        var body = Objects.requireNonNull(restTemplate.exchange(
-                createURLWithPort("answer/person/new"),
+        var response = restTemplate.exchange(
+                createURLWithPort("workshop/person/new"),
                 HttpMethod.POST,
                 new HttpEntity<>(request),
-                responseType).getBody());
+                responseType);
+        var body = Objects.requireNonNull(response.getBody());
 
 //        then
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
         assertTrue(body.isRight());
         assertThat(body.get(), is(NewPersonResponse.of(PersonId.of(1))));
     }
@@ -80,22 +83,23 @@ public class PersonControllerWorkshopIT {
                         .build())
                 .build();
 //        when
-        var body = Objects.requireNonNull(restTemplate.exchange(
-                createURLWithPort("answer/person/new"),
+        var response = restTemplate.exchange(
+                createURLWithPort("workshop/person/new"),
                 HttpMethod.POST,
                 new HttpEntity<>(request),
-                responseType).getBody());
+                responseType);
+        var body = Objects.requireNonNull(response.getBody());
 
 //        then
+        assertThat(response.getStatusCode(), is(HttpStatus.BAD_REQUEST));
         assertTrue(body.isLeft());
-        
         assertThat(body.getLeft().getMessages(), is(List.of(
-                "Name: * is not valid!", 
-                "Email: a is not valid!", 
-                "City: $ is not valid!, Postal Code: * is not valid!", 
+                "Name: * is not valid!",
+                "Email: a is not valid!",
+                "City: $ is not valid!, Postal Code: * is not valid!",
                 "Age: -1 is not > 0")));
     }
-    
+
     private String createURLWithPort(String uri) {
         return "http://localhost:" + port + uri;
     }
