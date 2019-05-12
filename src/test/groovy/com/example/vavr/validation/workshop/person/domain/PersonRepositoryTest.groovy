@@ -13,10 +13,10 @@ class PersonRepositoryTest extends Specification {
         def person = Person.builder()
                 .age(Age.of(14))
                 .name(Name.of('a'))
-                .emails(new Emails(List.of(Email.of("aaa@aaa.pl"))))
+                .emails(new Emails(List.of(Email.of('aaa@aaa.pl'))))
                 .address(Address.builder()
-                        .city(City.of("Warsaw"))
-                        .postalCode(PostalCode.of("00-001"))
+                        .city(City.of('Warsaw'))
+                        .postalCode(PostalCode.of('00-001'))
                         .build())
                 .build()
         
