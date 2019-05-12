@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
  * Created by mtumilowicz on 2019-05-09.
  */
 @Repository
-class PersonRepository {
+public class PersonRepository {
 
     Person save(Person person) {
         return person.withId(PersonId.of(1));

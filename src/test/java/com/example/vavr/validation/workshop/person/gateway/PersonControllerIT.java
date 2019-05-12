@@ -29,11 +29,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-/*
-to do tests:
-1. PersonController
- */
-public class PersonControllerTest {
+public class PersonControllerIT {
 
     @Autowired
     TestRestTemplate restTemplate;
