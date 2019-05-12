@@ -32,7 +32,6 @@ import static org.junit.Assert.assertTrue;
 /*
 to do tests:
 1. PersonService
-1. PersonRepository
 1. PersonMapper
 1. AddressMapper
 1. NewAddressRequestValidator
