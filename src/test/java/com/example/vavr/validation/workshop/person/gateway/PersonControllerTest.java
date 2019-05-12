@@ -89,7 +89,7 @@ public class PersonControllerTest {
 //        then
         assertTrue(body.isLeft());
         
-        assertTrue(body.getLeft().getMessages().containsAll(List.of(
+        assertThat(body.getLeft().getMessages(), is(List.of(
                 "* is not a valid name!", 
                 "a is not a valid email!", 
                 "$ is not a valid city!, * is not a valid postal code!", 
