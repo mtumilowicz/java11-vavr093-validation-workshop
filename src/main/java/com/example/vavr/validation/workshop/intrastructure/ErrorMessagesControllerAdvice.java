@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 class ErrorMessagesControllerAdvice {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(NewPersonValidationException.class)
+    @ExceptionHandler(NewPersonRequestValidationException.class)
     @ResponseBody
-    ErrorMessages entityNotFoundException(@NonNull HttpServletRequest request,
-                                          @NonNull NewPersonValidationException ex) {
+    ErrorMessages newPersonRequestValidationException(@NonNull HttpServletRequest request,
+                                          @NonNull NewPersonRequestValidationException ex) {
 
         return ErrorMessages.of(ex.getErrors());
     }

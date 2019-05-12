@@ -1,6 +1,6 @@
 package com.example.vavr.validation.workshop.person.gateway;
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonValidationException;
+import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException;
 import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.domain.PersonRequestPatchService;
 import com.example.vavr.validation.workshop.person.domain.PersonService;
@@ -71,6 +71,6 @@ class PersonControllerWorkshop {
 
         return patchService.patchSaveRequest(newPersonRequest)
                 .map(this::newPersonCommand)
-                .getOrElseThrow(() -> NewPersonValidationException.of(errors));
+                .getOrElseThrow(() -> NewPersonRequestValidationException.of(errors));
     }
 }

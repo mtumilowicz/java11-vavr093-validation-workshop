@@ -11,6 +11,6 @@ import lombok.Value;
  */
 @Value(staticConstructor = "of")
 @EqualsAndHashCode(callSuper=false)
-public class NewPersonValidationException extends RuntimeException {
+public class NewPersonRequestValidationException extends RuntimeException {
     Seq<String> errors;
 }
