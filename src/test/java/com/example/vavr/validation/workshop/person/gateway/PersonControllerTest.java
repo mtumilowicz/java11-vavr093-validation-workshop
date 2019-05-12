@@ -63,6 +63,38 @@ public class PersonControllerTest {
         assertTrue(body.isRight());
         assertThat(body.get(), is(NewPersonResponse.of(PersonId.of(1))));
     }
+
+    @Test
+    public void newPerson_fullInvalidRequest() {
+//        given
+        var responseType = new ParameterizedTypeReference<Either<ErrorMessages, NewPersonResponse>>() {
+        };
+
+        var request = NewPersonRequest.builder()
+                .age(-1)
+                .name("*")
+                .emails(List.of("a"))
+                .address(NewAddressRequest.builder()
+                        .city("$")
+                        .postalCode("*")
+                        .build())
+                .build();
+//        when
+        var body = Objects.requireNonNull(restTemplate.exchange(
+                createURLWithPort("person/new"),
+                HttpMethod.POST,
+                new HttpEntity<>(request),
+                responseType).getBody());
+
+//        then
+        assertTrue(body.isLeft());
+        
+        assertTrue(body.getLeft().getMessages().containsAll(List.of(
+                "* is not a proper name!", 
+                "a is not a valid email!", 
+                "$ is not a proper city!, * is not a proper postal code!", 
+                "-1 is not > 0")));
+    }
     
     private String createURLWithPort(String uri) {
         return "http://localhost:" + port + uri;
