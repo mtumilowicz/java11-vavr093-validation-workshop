@@ -92,7 +92,7 @@ public class PersonControllerTest {
         assertThat(body.getLeft().getMessages(), is(List.of(
                 "Name: * is not valid!", 
                 "Email: a is not valid!", 
-                "City: $ is not valid!, * is not a valid postal code!", 
+                "City: $ is not valid!, Postal Code: * is not valid!", 
                 "Age: -1 is not > 0")));
     }
     

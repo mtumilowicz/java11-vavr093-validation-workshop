@@ -30,6 +30,6 @@ public class PostalCode {
     public static Validation<String, PostalCode> validate(String postalCode) {
         return VALIDATOR.test(postalCode)
                 ? Validation.valid(new PostalCode(postalCode))
-                : Validation.invalid(postalCode + " is not a valid postal code!");
+                : Validation.invalid("Postal Code: " + postalCode + " is not valid!");
     }
 }
