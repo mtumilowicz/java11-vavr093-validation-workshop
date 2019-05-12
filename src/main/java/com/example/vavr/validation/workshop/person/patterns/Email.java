@@ -19,7 +19,7 @@ public class Email {
     public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w._%+-]+@[\\w.-]+\\.[\\w]{2,}")
             .asPredicate();
     
-    private static final Function<String, String> errorMessage = email -> "Email: " + email + " is not a valid email!";
+    private static final Function<String, String> errorMessage = email -> "Email: " + email + " is not valid!";
 
     String email;
 
