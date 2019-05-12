@@ -29,6 +29,17 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+/*
+to do tests:
+1. PersonService
+1. PersonRequestPatchService
+1. PersonRepository
+1. PersonMapper
+1. AddressMapper
+1. NewAddressRequestValidator
+1. NewPersonRequestValidator
+1. PersonController
+ */
 public class PersonControllerTest {
 
     @Autowired
