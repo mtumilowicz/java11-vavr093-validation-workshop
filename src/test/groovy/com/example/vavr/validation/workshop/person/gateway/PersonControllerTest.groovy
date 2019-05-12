@@ -40,7 +40,7 @@ class PersonControllerTest extends Specification {
         personId.getBody() == Either.right(NewPersonResponse.of(PersonId.of(1)))
     }
 
-    def "test newPerson - invalid request"() {
+    def "test newPerson - full invalid request"() {
         given:
         def request = NewPersonRequest.builder()
                 .age(-1)
