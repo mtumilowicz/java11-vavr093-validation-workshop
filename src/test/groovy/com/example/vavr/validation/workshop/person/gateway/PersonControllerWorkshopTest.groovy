@@ -1,6 +1,6 @@
 package com.example.vavr.validation.workshop.person.gateway
 
-import com.example.vavr.validation.workshop.intrastructure.ErrorMessages
+import com.example.vavr.validation.workshop.intrastructure.NewPersonValidationException
 import com.example.vavr.validation.workshop.person.domain.PersonRepository
 import com.example.vavr.validation.workshop.person.domain.PersonRequestPatchService
 import com.example.vavr.validation.workshop.person.domain.PersonService
@@ -9,9 +9,7 @@ import com.example.vavr.validation.workshop.person.gateway.input.NewPersonReques
 import com.example.vavr.validation.workshop.person.gateway.output.NewPersonResponse
 import com.example.vavr.validation.workshop.person.patterns.PersonId
 import io.vavr.collection.List
-import io.vavr.control.Either
-import spock.lang.Specification
-
+import spock.lang.Specification 
 /**
  * Created by mtumilowicz on 2019-05-12.
  */
@@ -37,7 +35,7 @@ class PersonControllerWorkshopTest extends Specification {
         def personId = controller.newPerson(request)
 
         then:
-        personId.getBody() == Either.right(NewPersonResponse.of(PersonId.of(1)))
+        personId.getBody() == NewPersonResponse.of(PersonId.of(1))
     }
 
     def "test newPerson - full invalid request"() {
@@ -57,13 +55,15 @@ class PersonControllerWorkshopTest extends Specification {
                 new PersonRequestPatchService())
 
         when:
-        def personId = controller.newPerson(request)
+        controller.newPerson(request)
 
         then:
-        personId.getBody() == Either.left(ErrorMessages.of(List.of(
+        NewPersonValidationException ex = thrown()
+        // Alternative syntax: def ex = thrown(InvalidDeviceException)
+        ex.errors == List.of(
                 'Name: * is not valid!',
                 'Email: a is not valid!',
                 'City: $ is not valid!, Postal Code: * is not valid!',
-                'Age: -1 is not > 0')))
+                'Age: -1 is not > 0')
     }
 }
