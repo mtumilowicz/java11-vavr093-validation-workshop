@@ -31,6 +31,6 @@ public class Name {
     public static Validation<String, Name> validate(String name) {
         return VALIDATOR.test(name)
                 ? Validation.valid(new Name(name))
-                : Validation.invalid(name + " is not a valid name!");
+                : Validation.invalid("Name: " + name + " is not valid!");
     }
 }
