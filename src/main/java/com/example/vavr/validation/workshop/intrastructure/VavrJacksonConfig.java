@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by mtumilowicz on 2019-05-12.
  */
 @Configuration
-public class JacksonConfig {
+public class VavrJacksonConfig {
     @Bean
     Module vavrModule() {
         return new VavrModule();
