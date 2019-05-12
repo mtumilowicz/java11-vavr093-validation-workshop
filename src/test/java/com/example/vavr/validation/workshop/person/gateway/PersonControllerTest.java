@@ -31,7 +31,6 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 /*
 to do tests:
-1. PersonService
 1. PersonController
  */
 public class PersonControllerTest {
