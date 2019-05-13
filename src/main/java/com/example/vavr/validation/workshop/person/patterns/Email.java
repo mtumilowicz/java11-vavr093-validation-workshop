@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Value
 public class Email {
     public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w._%+-]+@[\\w.-]+\\.[\\w]{2,}")
-            .asPredicate();
+            .asMatchPredicate();
 
     private static final Function<String, String> errorMessage = email -> "Email: " + email + " is not valid!";
 

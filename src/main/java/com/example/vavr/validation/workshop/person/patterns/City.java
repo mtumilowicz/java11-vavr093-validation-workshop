@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 @Value
 public class City {
-    public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asPredicate();
+    public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
 
     String city;
 

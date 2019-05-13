@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 @Value
 public class PostalCode {
-    public static final Predicate<String> VALIDATOR = Pattern.compile("\\d{2}-\\d{3}").asPredicate();
+    public static final Predicate<String> VALIDATOR = Pattern.compile("\\d{2}-\\d{3}").asMatchPredicate();
     
     String postalCode;
 
