@@ -10,7 +10,7 @@ import spock.lang.Specification
 /**
  * Created by mtumilowicz on 2019-05-12.
  */
-class NewAddressRequestValidatorTest extends Specification {
+class NewAddressRequestAnswerValidatorTest extends Specification {
     def "test validate - all fields invalid"() {
         given:
         def request = NewAddressRequest.builder()
@@ -19,7 +19,7 @@ class NewAddressRequestValidatorTest extends Specification {
                 .build()
 
         when:
-        def validation = NewAddressRequestValidator.validate(request)
+        def validation = NewAddressRequestAnswerValidator.validate(request)
 
         then:
         validation == Validation.invalid(List.of('City: * is not valid!', 'Postal Code: & is not valid!'))
@@ -33,7 +33,7 @@ class NewAddressRequestValidatorTest extends Specification {
                 .build()
 
         when:
-        def validation = NewAddressRequestValidator.validate(request)
+        def validation = NewAddressRequestAnswerValidator.validate(request)
 
         then:
         validation == Validation.valid(NewAddressCommand.builder()

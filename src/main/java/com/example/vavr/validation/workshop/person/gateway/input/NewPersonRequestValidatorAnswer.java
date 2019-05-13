@@ -21,7 +21,7 @@ public class NewPersonRequestValidatorAnswer {
                 .combine(
                         Name.validate(request.getName()),
                         Email.validate(request.getEmails()).mapError(concatByComma),
-                        NewAddressRequestValidator.validate(request.getAddress()).mapError(concatByComma),
+                        NewAddressRequestAnswerValidator.validate(request.getAddress()).mapError(concatByComma),
                         Age.validate(request.getAge()))
                 .ap((name, emails, address, age) -> NewPersonCommand.builder()
                         .name(name)
