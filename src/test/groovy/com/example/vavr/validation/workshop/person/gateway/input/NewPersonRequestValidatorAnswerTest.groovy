@@ -15,7 +15,7 @@ import spock.lang.Specification
 /**
  * Created by mtumilowicz on 2019-05-12.
  */
-class NewPersonRequestValidatorTest extends Specification {
+class NewPersonRequestValidatorAnswerTest extends Specification {
     def "test validate - all fields valid"() {
         given:
         def request = NewPersonRequest.builder()
@@ -29,7 +29,7 @@ class NewPersonRequestValidatorTest extends Specification {
                 .build()
 
         when:
-        def validation = NewPersonRequestValidator.validate(request)
+        def validation = NewPersonRequestValidatorAnswer.validate(request)
 
         then:
         validation == Validation.valid(NewPersonCommand.builder()
@@ -56,7 +56,7 @@ class NewPersonRequestValidatorTest extends Specification {
                 .build()
 
         when:
-        def validation = NewPersonRequestValidator.validate(request)
+        def validation = NewPersonRequestValidatorAnswer.validate(request)
 
         then:
         validation == Validation.invalid(List.of(

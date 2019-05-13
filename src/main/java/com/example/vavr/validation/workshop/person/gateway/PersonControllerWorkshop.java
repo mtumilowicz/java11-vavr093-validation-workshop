@@ -5,7 +5,7 @@ import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.domain.PersonRequestPatchService;
 import com.example.vavr.validation.workshop.person.domain.PersonService;
 import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequest;
-import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequestValidator;
+import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequestValidatorAnswer;
 import com.example.vavr.validation.workshop.person.gateway.output.NewPersonResponse;
 import io.vavr.collection.Seq;
 import lombok.AccessLevel;
@@ -40,7 +40,7 @@ class PersonControllerWorkshop {
     @PostMapping("workshop/person/new")
     public ResponseEntity<NewPersonResponse> newPerson(
             @RequestBody NewPersonRequest newPersonRequest) {
-        var validation = NewPersonRequestValidator.validate(newPersonRequest);
+        var validation = NewPersonRequestValidatorAnswer.validate(newPersonRequest);
         return validation.isValid()
                 ? newPersonCommand(validation.get())
                 : patchNewPersonCommand(newPersonRequest, validation.getError());
