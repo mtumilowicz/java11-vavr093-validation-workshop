@@ -1,7 +1,10 @@
-package com.example.vavr.validation.workshop.person.gateway.input
+package com.example.vavr.validation.workshop.person.gateway.input.validation
 
 import com.example.vavr.validation.workshop.person.domain.NewAddressCommand
 import com.example.vavr.validation.workshop.person.domain.NewPersonCommand
+import com.example.vavr.validation.workshop.person.gateway.input.NewAddressRequest
+import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequest
+import com.example.vavr.validation.workshop.person.gateway.input.validation.NewPersonRequestValidatorAnswer
 import com.example.vavr.validation.workshop.person.patterns.Age
 import com.example.vavr.validation.workshop.person.patterns.City
 import com.example.vavr.validation.workshop.person.patterns.Email

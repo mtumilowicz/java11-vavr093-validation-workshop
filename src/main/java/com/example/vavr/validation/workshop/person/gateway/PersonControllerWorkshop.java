@@ -5,7 +5,7 @@ import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.domain.PersonRequestPatchService;
 import com.example.vavr.validation.workshop.person.domain.PersonService;
 import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequest;
-import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequestValidatorWorkshop;
+import com.example.vavr.validation.workshop.person.gateway.input.validation.NewPersonRequestValidatorWorkshop;
 import com.example.vavr.validation.workshop.person.gateway.output.NewPersonResponse;
 import io.vavr.collection.Seq;
 import lombok.AccessLevel;
