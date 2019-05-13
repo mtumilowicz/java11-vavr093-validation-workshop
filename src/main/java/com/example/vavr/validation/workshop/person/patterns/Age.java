@@ -1,6 +1,8 @@
 package com.example.vavr.validation.workshop.person.patterns;
 
+import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException;
 import com.google.common.base.Preconditions;
+import io.vavr.collection.List;
 import io.vavr.control.Validation;
 import lombok.Value;
 
@@ -29,5 +31,13 @@ public class Age {
         return VALIDATOR.test(age)
                 ? Validation.valid(new Age(age))
                 : Validation.invalid("Age: " + age + " is not > 0");
+    }
+
+    public static Age validateWorkshop(int age) {
+        if (!VALIDATOR.test(age)) {
+            throw NewPersonRequestValidationException.of(List.of("Age: " + age + " is not > 0"));
+        }
+
+        return new Age(age);
     }
 }

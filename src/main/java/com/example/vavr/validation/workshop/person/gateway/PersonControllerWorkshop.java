@@ -5,7 +5,7 @@ import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.domain.PersonRequestPatchService;
 import com.example.vavr.validation.workshop.person.domain.PersonService;
 import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequest;
-import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequestValidatorAnswer;
+import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequestValidatorWorkshop;
 import com.example.vavr.validation.workshop.person.gateway.output.NewPersonResponse;
 import io.vavr.collection.Seq;
 import lombok.AccessLevel;
@@ -34,16 +34,18 @@ class PersonControllerWorkshop {
      * Match(validation).of
      * Case($Valid($()), ...)
      * Case($Invalid($()), ...)
-     * 
+     * <p>
      * method should return ResponseEntity<Either<ErrorMessages, NewPersonResponse>>
      */
     @PostMapping("workshop/person/new")
     public ResponseEntity<NewPersonResponse> newPerson(
             @RequestBody NewPersonRequest newPersonRequest) {
-        var validation = NewPersonRequestValidatorAnswer.validate(newPersonRequest);
-        return validation.isValid()
-                ? newPersonCommand(validation.get())
-                : patchNewPersonCommand(newPersonRequest, validation.getError());
+        try {
+            NewPersonCommand validation = NewPersonRequestValidatorWorkshop.validate(newPersonRequest);
+            return newPersonCommand(validation);
+        } catch (NewPersonRequestValidationException ex) {
+            return patchNewPersonCommand(newPersonRequest, ex.getErrors());
+        }
     }
 
     /**
@@ -61,7 +63,7 @@ class PersonControllerWorkshop {
      * Match(validation).of
      * Case($Some($()), ...)
      * Case($None(), ...)
-     * 
+     * <p>
      * method should return ResponseEntity<Either<ErrorMessages, NewPersonResponse>>
      * exception should not be thrown at all
      */

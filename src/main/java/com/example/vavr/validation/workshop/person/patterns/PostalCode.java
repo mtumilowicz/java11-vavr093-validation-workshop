@@ -1,6 +1,8 @@
 package com.example.vavr.validation.workshop.person.patterns;
 
+import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException;
 import com.google.common.base.Preconditions;
+import io.vavr.collection.List;
 import io.vavr.control.Validation;
 import lombok.NonNull;
 import lombok.Value;
@@ -31,5 +33,13 @@ public class PostalCode {
         return VALIDATOR.test(postalCode)
                 ? Validation.valid(new PostalCode(postalCode))
                 : Validation.invalid("Postal Code: " + postalCode + " is not valid!");
+    }
+
+    public static PostalCode validateWorkshop(String postalCode) {
+        if (!VALIDATOR.test(postalCode)) {
+            throw NewPersonRequestValidationException.of(List.of("Postal Code: " + postalCode + " is not valid!"));
+        }
+
+        return new PostalCode(postalCode);
     }
 }

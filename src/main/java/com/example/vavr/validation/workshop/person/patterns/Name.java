@@ -1,7 +1,9 @@
 package com.example.vavr.validation.workshop.person.patterns;
 
 
+import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException;
 import com.google.common.base.Preconditions;
+import io.vavr.collection.List;
 import io.vavr.control.Validation;
 import lombok.NonNull;
 import lombok.Value;
@@ -15,7 +17,7 @@ import java.util.regex.Pattern;
 @Value
 public class Name {
     public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asPredicate();
-    
+
     String name;
 
     private Name(String name) {
@@ -24,7 +26,7 @@ public class Name {
 
     public static Name of(@NonNull String name) {
         Preconditions.checkArgument(VALIDATOR.test(name));
-        
+
         return new Name(name);
     }
 
@@ -32,5 +34,13 @@ public class Name {
         return VALIDATOR.test(name)
                 ? Validation.valid(new Name(name))
                 : Validation.invalid("Name: " + name + " is not valid!");
+    }
+
+    public static Name validateWorkshop(String name) {
+        if (!VALIDATOR.test(name)) {
+            throw NewPersonRequestValidationException.of(List.of("Name: " + name + " is not valid!"));
+
+        }
+        return new Name(name);
     }
 }

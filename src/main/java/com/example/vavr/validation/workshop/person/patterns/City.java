@@ -1,6 +1,8 @@
 package com.example.vavr.validation.workshop.person.patterns;
 
+import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException;
 import com.google.common.base.Preconditions;
+import io.vavr.collection.List;
 import io.vavr.control.Validation;
 import lombok.NonNull;
 import lombok.Value;
@@ -31,5 +33,13 @@ public class City {
         return VALIDATOR.test(city)
                 ? Validation.valid(new City(city))
                 : Validation.invalid("City: " + city + " is not valid!");
+    }
+
+    public static City validateWorkshop(String city) {
+        if (!VALIDATOR.test(city)) {
+            throw NewPersonRequestValidationException.of(List.of("City: " + city + " is not valid!"));
+        }
+        
+        return new City(city);
     }
 }
