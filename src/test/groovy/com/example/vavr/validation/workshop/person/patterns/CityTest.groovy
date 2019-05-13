@@ -8,29 +8,29 @@ import spock.lang.Specification
 /**
  * Created by mtumilowicz on 2019-05-13.
  */
-class AgeTest extends Specification {
+class CityTest extends Specification {
     
     def "validate - valid"() {
         expect:
-        Age.validate(15) == Validation.valid(Age.of(15))
+        City.validate('Warsaw') == Validation.valid(City.of('Warsaw'))
     }
 
     def "validate - invalid"() {
         expect:
-        Age.validate(-5) == Validation.invalid('Age: -5 is not > 0')
+        City.validate('%') == Validation.invalid('City: % is not valid!')
     }
 
     def "validateWorkshop - valid"() {
         expect:
-        Age.validateWorkshop(15) == Age.of(15)
+        City.validateWorkshop('Warsaw') == City.of('Warsaw')
     }
 
     def "validateWorkshop - invalid"() {
         when:
-        Age.validateWorkshop(-5)
+        City.validateWorkshop('%')
 
         then:
         NewPersonRequestValidationException ex = thrown()
-        ex.getErrors() == List.of('Age: -5 is not > 0')
+        ex.getErrors() == List.of('City: % is not valid!')
     }
 }
