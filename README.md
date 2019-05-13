@@ -8,7 +8,12 @@
 * https://www.baeldung.com/vavr-validation-api
 * https://github.com/mtumilowicz/java11-vavr-validation
 * https://github.com/mtumilowicz/java11-jsr303-custom-validation
-* on the workshop we will try to rewrite all methods from classes `*Workshop` using hints
+* on the workshop we will try to rewrite all methods from classes `*Workshop` 
+using hints given in the classes and refactoring plan depicted below
+* refactoring plan:
+    1. phase one
+        * NewAddressRequestValidatorWorkshop
+        * NewPersonRequestValidatorWorkshop
 * answers: `*Answer`
 # theory in a nutshell
 
