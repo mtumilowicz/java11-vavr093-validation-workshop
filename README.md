@@ -1,3 +1,7 @@
 # java11-vavr093-validation-workshop
 
-* use pattern matching
+# project description
+
+# theory in a nutshell
+
+# conclusions in a nutshell
