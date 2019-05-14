@@ -7,8 +7,8 @@
 * https://www.vavr.io/vavr-docs/#_validation  
 * https://github.com/mtumilowicz/java11-vavr-validation
 * https://github.com/mtumilowicz/java11-jsr303-custom-validation
-* on the workshop we will try to rewrite all methods from classes `*Workshop` 
-using hints given in the classes and refactoring plan depicted below
+* on the workshop we will try to rewrite all methods / classes with naming convention: `*Workshop` 
+using hints (given in the classes) and refactoring plan depicted below
 * answers: `*Answer`
 
 ## refactoring plan:
