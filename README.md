@@ -51,6 +51,18 @@ all errors encountered, instead of one at a time
 * `interface Validation<E, T> extends Value<T>, Serializable`
     * `interface Value<T> extends Iterable<T>`
 * two implementations:
-    * `final class Valid<E, T> implements Validation<E, T>`
-    * `final class Invalid<E, T> implements Validation<E, T>`
+    * `final class Valid<E, T> implements Validation<E, T>` - contains valid data
+    * `final class Invalid<E, T> implements Validation<E, T>` - is an error representation
+* If all of them are successful, the ap(fn) method maps all results to a single value using a function 
+it takes as an argument
+* It must expect the same number of parameters as the number of validation results passed to 
+combine(...) method
+* types of parameters must be the same as values contained by validation results
+* The order of arguments passed to the function corresponds to the order of validation results
+* If at least one of validation results points to invalid data, then ap(fn) methods returns Invalid instance, 
+containing a list of all errors that occurred
+
 # conclusions in a nutshell
+* creating
+* composing
+* consuming
