@@ -47,6 +47,7 @@ using hints (given in the classes) and refactoring plan depicted below
 all errors encountered, instead of one at a time
 * contrary to Bean Validation standard (JSR-303 and JSR-349):
     * https://github.com/mtumilowicz/java11-jsr303-custom-validation
+    * https://github.com/mtumilowicz/java-bean-validation2
     * we do not need any infrastructure providers (AOP, dynamic proxies, DI)
     * bad request is not rejected and can be easily handled in a reasonable way (for example
     send to patch service)
