@@ -31,9 +31,9 @@ class PersonControllerWorkshop {
      * rewrite using pattern matching
      * <p>
      * hints - useful methods:
-     * Match(validation).of
-     * Case($Valid($()), ...)
-     * Case($Invalid($()), ...)
+     *  Match(validation).of
+     *      Case($Valid($()), ...)
+     *      Case($Invalid($()), ...)
      * <p>
      * method should return ResponseEntity<Either<ErrorMessages, NewPersonResponse>>
      */
@@ -60,9 +60,9 @@ class PersonControllerWorkshop {
      * rewrite using pattern matching
      * <p>
      * hints - useful methods:
-     * Match(validation).of
-     * Case($Some($()), ...)
-     * Case($None(), ...)
+     *  Match(validation).of
+     *      Case($Some($()), ...)
+     *      Case($None(), ...)
      * <p>
      * method should return ResponseEntity<Either<ErrorMessages, NewPersonResponse>>
      * exception should not be thrown at all
