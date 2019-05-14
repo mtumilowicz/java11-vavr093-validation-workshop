@@ -42,13 +42,14 @@ using hints given in the classes and refactoring plan depicted below
     * `ValidationException`
 
 # theory in a nutshell
-* The Validation control is an applicative functor and facilitates accumulating errors'
-* When trying to compose Monads, the combination process will short circuit at the first encountered error
-* But 'Validation' will continue processing the combining functions, accumulating all errors
-* This is especially useful when doing validation of multiple fields, say a web form, and you want to know 
+* `Validation` is an applicative functor and facilitates accumulating errors
+* when trying to compose Monads, the combination process will short circuit at the first encountered error
+    as getting subsequent wrapped values depends on results of previous calculations
+* `Validation` will continue processing accumulating all errors (if any)
+* it is especially useful when doing validation of multiple fields, say a web form, and you want to know 
 all errors encountered, instead of one at a time
-* opposite to Bean Validation standard (JSR-303 and JSR-349)
-* we dont need any infrastructure providers (AOP, dynamic proxies, DI)
+* contrary to Bean Validation standard (JSR-303 and JSR-349) - we dont need any infrastructure 
+providers (AOP, dynamic proxies, DI)
 * `interface Validation<E, T> extends Value<T>, Serializable`
     * `interface Value<T> extends Iterable<T>`
 * two implementations:
@@ -59,29 +60,34 @@ all errors encountered, instead of one at a time
 * creating
     * `static <E, T> Validation<E, T> valid(T value)`
     * `static <E, T> Validation<E, T> invalid(E error)`
-    ```
-    private static final IntPredicate PREDICATE = i -> i > 0;
-    
-    public static Validation<String, Age> validateAnswer(int age) {
-        return PREDICATE.test(age)
-                ? Validation.valid(new Age(age))
-                : Validation.invalid("Age: " + age + " is not > 0");
-    }
-    ```
+    * example
+        ```
+        private static final IntPredicate PREDICATE = i -> i > 0;
+        
+        public static Validation<String, Age> validateAnswer(int age) {
+            return PREDICATE.test(age)
+                    ? Validation.valid(new Age(age))
+                    : Validation.invalid("Age: " + age + " is not > 0");
+        }
+        ```
 * combining
     * `static <E, T1, ...> Builder<E, T1, ...> 
         combine(Validation<E, T1> validation1, Validation<E, T2> validation2, ...)`
     * `public <R> Validation<Seq<E>, R> ap(FunctionN<T1, T2, ..., R> f)`
-    ```
-    return Validation
-            .combine(
-                    City.validateAnswer(request.getCity()),
-                    PostalCode.validateAnswer(request.getPostalCode()))
-            .ap((city, postalCode) -> NewAddressCommand.builder()
-                    .city(city)
-                    .postalCode(postalCode)
-                    .build());
-    ```
+    * example
+        ```
+        static Validation<Seq<String>, NewAddressCommand> validate(NewAddressRequest request) {
+        
+            return Validation
+                    .combine(
+                            City.validateAnswer(request.getCity()),
+                            PostalCode.validateAnswer(request.getPostalCode()))
+                    .ap((city, postalCode) -> NewAddressCommand.builder()
+                            .city(city)
+                            .postalCode(postalCode)
+                            .build());
+        }
+        ```
     * up to 8 arguments
     * `combine` and `functionN` in `ap` should have the same number of params
     * `combine` and `functionN` in `ap` should have the same type of params
