@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  */
 @Value
 public class Name {
-    public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
+    private static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
 
     String raw;
 

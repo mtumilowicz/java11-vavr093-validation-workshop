@@ -13,17 +13,17 @@ import java.util.function.IntPredicate;
  */
 @Value
 public class Age {
-    public static final IntPredicate VALIDATOR = i -> i > 0;
-    
+    private static final IntPredicate VALIDATOR = i -> i > 0;
+
     int raw;
 
     private Age(int age) {
         this.raw = age;
     }
-    
+
     public static Age of(int age) {
         Preconditions.checkArgument(VALIDATOR.test(age));
-        
+
         return new Age(age);
     }
 

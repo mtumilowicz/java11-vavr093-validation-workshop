@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 @Value
 public class City {
-    public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
+    private static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
 
     String raw;
 
@@ -39,7 +39,7 @@ public class City {
         if (!VALIDATOR.test(city)) {
             throw ValidationException.of(List.of("City: " + city + " is not valid!"));
         }
-        
+
         return new City(city);
     }
 }
