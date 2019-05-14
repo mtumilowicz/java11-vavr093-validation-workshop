@@ -3,7 +3,8 @@
 # java11-vavr093-validation-workshop
 
 # project description
-* https://softwaremill.com/javaslang-data-validation/  
+* https://softwaremill.com/javaslang-data-validation/
+* https://www.youtube.com/watch?v=wJn4LHD6Y7o
 * https://www.vavr.io/vavr-docs/#_validation  
 * https://github.com/mtumilowicz/java11-vavr-validation
 * https://github.com/mtumilowicz/java11-jsr303-custom-validation
