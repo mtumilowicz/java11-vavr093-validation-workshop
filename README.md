@@ -127,4 +127,4 @@ all errors encountered, instead of one at a time
         validation.bimap(..., ...)
         ```
         * `Validation<E2, T2> bimap(Function<? super E, ? extends E2> errorMapper, Function<? super T, ? extends T2> valueMapper)`
-    * bimap vs fold - bimap returns `Validation` and fold returns any arbitrary type
+    * `bimap` vs `fold` - `bimap` returns `Validation` and `fold` returns any arbitrary type
