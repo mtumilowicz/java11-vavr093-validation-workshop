@@ -13,6 +13,15 @@ import java.util.LinkedList;
  * Created by mtumilowicz on 2018-12-09.
  */
 class NewAddressRequestValidatorWorkshop {
+    
+    /**
+     * should return Validation<Seq<String>, NewAddressCommand>
+     * 
+     * hints - use: 
+     *  Validation
+     *      .combine(City.validateWorkshop,...)
+     *      .ap((city, ...) -> NewAddressCommand.builder()...)
+     */
     static NewAddressCommand validate(NewAddressRequest request) {
 
         var errors = new LinkedList<String>();
