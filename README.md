@@ -32,18 +32,14 @@ using hints (given in the classes) and refactoring plan depicted below
         * rewrite tests `NewPersonRequestValidatorWorkshopTest`, note that 
         `NewPersonRequestValidatorAnswerTest` could be helpful
         * rewrite class
-    * `XWorkshop`
-        * rewrite tests `XWorkshopTest`, note that 
-        `XAnswerTest` could be helpful
-        * rewrite class
-
-1. rewrite `PersonControllerWorkshop` using `Validation` instead
-    of throwing exception and try-catch blocks (more hints in the class)
-    * rewrite tests `PersonControllerWorkshopTest` - note that
+    * `PersonControllerWorkshop`
+        * rewrite tests `PersonControllerWorkshopTest`, note that 
         `PersonControllerAnswerTest` could be helpful
+        * rewrite class
 1. delete
     * `ErrorMessagesControllerAdvice`
     * `ValidationException`
+1. all tests should pass in this step
 
 # theory in a nutshell
 * `Validation` is an applicative functor and facilitates accumulating errors
