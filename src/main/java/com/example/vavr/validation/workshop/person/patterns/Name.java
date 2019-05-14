@@ -18,10 +18,10 @@ import java.util.regex.Pattern;
 public class Name {
     public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
 
-    String name;
+    String raw;
 
     private Name(String name) {
-        this.name = name;
+        this.raw = name;
     }
 
     public static Name of(@NonNull String name) {

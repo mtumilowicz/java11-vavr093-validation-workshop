@@ -9,9 +9,9 @@ import lombok.Value;
  */
 @Value
 public class Emails {
-    List<Email> emails;
+    List<Email> raw;
 
     public Emails(@NonNull List<Email> emails) {
-        this.emails = emails;
+        this.raw = emails;
     }
 }

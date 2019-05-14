@@ -17,10 +17,10 @@ import java.util.regex.Pattern;
 public class City {
     public static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
 
-    String city;
+    String raw;
 
     private City(String city) {
-        this.city = city;
+        this.raw = city;
     }
 
     public static City of(@NonNull String city) {

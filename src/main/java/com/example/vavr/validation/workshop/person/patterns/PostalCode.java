@@ -17,10 +17,10 @@ import java.util.regex.Pattern;
 public class PostalCode {
     public static final Predicate<String> VALIDATOR = Pattern.compile("\\d{2}-\\d{3}").asMatchPredicate();
     
-    String postalCode;
+    String raw;
 
     private PostalCode(String postalCode) {
-        this.postalCode = postalCode;
+        this.raw = postalCode;
     }
     
     public static PostalCode of(@NonNull String postalCode) {

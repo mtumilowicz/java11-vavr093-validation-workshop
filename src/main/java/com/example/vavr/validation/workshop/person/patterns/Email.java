@@ -23,10 +23,10 @@ public class Email {
 
     private static final Function<String, String> errorMessage = email -> "Email: " + email + " is not valid!";
 
-    String email;
+    String raw;
 
     private Email(String email) {
-        this.email = email;
+        this.raw = email;
     }
 
     public static Email of(@NonNull String email) {

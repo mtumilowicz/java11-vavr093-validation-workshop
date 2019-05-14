@@ -15,7 +15,7 @@ public class NewPersonResponse {
 
     public static NewPersonResponse of(PersonId id) {
         return NewPersonResponse.builder()
-                .id(id.getValue())
+                .id(id.getRaw())
                 .build();
     }
 }

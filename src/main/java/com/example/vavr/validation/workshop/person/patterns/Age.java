@@ -15,10 +15,10 @@ import java.util.function.IntPredicate;
 public class Age {
     public static final IntPredicate VALIDATOR = i -> i > 0;
     
-    int age;
+    int raw;
 
     private Age(int age) {
-        this.age = age;
+        this.raw = age;
     }
     
     public static Age of(int age) {
