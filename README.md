@@ -101,6 +101,38 @@ all errors encountered, instead of one at a time
     to a single value using a function `f`
     * if at least one of `Validations` is `Invalid`, then `ap(f)` returns `Invalid` with
     all errors aggregated
+    * for example, for 3 arguments `ap` looks like
+        * `ap` in `Builder` class (`Builder` is returned by `combine` method)
+            ```
+            public <R> Validation<Seq<E>, R> ap(Function3<T1, T2, T3, R> f) {
+                return v3.ap(v2.ap(v1.ap(Validation.valid(f.curried()))));
+            }
+            ```
+        * `ap` in `Validation` class
+        ```
+            default <U> Validation<Seq<E>, U> ap(Validation<Seq<E>, ? extends Function<? super T, ? extends U>> validation) {
+                Objects.requireNonNull(validation, "validation is null");
+                if (isValid()) {
+                    if (validation.isValid()) {
+                        final Function<? super T, ? extends U> f = validation.get();
+                        final U u = f.apply(this.get());
+                        return valid(u);
+                    } else {
+                        final Seq<E> errors = validation.getError();
+                        return invalid(errors);
+                    }
+                } else {
+                    if (validation.isValid()) {
+                        final E error = this.getError();
+                        return invalid(List.of(error));
+                    } else {
+                        final Seq<E> errors = validation.getError();
+                        final E error = this.getError();
+                        return invalid(errors.append(error));
+                    }
+                }
+            }
+        ```
 * consuming
     * pattern matching
         ```
