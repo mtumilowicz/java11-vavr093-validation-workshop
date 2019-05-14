@@ -12,12 +12,12 @@ class PostalCodeTest extends Specification {
 
     def "validate - valid"() {
         expect:
-        PostalCode.validate('00-001') == Validation.valid(PostalCode.of('00-001'))
+        PostalCode.validateAnswer('00-001') == Validation.valid(PostalCode.of('00-001'))
     }
 
     def "validate - invalid"() {
         expect:
-        PostalCode.validate('%') == Validation.invalid('Postal Code: % is not valid!')
+        PostalCode.validateAnswer('%') == Validation.invalid('Postal Code: % is not valid!')
     }
 
     def "validateWorkshop - valid"() {

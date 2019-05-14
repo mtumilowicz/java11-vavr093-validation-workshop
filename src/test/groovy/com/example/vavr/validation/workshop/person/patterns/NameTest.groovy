@@ -12,12 +12,12 @@ class NameTest extends Specification {
 
     def "validate - valid"() {
         expect:
-        Name.validate('Alfred') == Validation.valid(Name.of('Alfred'))
+        Name.validateAnswer('Alfred') == Validation.valid(Name.of('Alfred'))
     }
 
     def "validate - invalid"() {
         expect:
-        Name.validate('%') == Validation.invalid('Name: % is not valid!')
+        Name.validateAnswer('%') == Validation.invalid('Name: % is not valid!')
     }
 
     def "validateWorkshop - valid"() {

@@ -35,7 +35,7 @@ public class Email {
         return new Email(email);
     }
 
-    public static Validation<List<String>, Emails> validate(List<String> emails) {
+    public static Validation<List<String>, Emails> validateAnswer(List<String> emails) {
         return emails.partition(VALIDATOR)
                 .apply((successes, failures) -> failures.isEmpty()
                         ? Validation.valid(successes.map(Email::new).transform(Emails::new))

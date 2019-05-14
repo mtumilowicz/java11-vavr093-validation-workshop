@@ -29,7 +29,7 @@ public class PostalCode {
         return new PostalCode(postalCode);
     }
 
-    public static Validation<String, PostalCode> validate(String postalCode) {
+    public static Validation<String, PostalCode> validateAnswer(String postalCode) {
         return VALIDATOR.test(postalCode)
                 ? Validation.valid(new PostalCode(postalCode))
                 : Validation.invalid("Postal Code: " + postalCode + " is not valid!");

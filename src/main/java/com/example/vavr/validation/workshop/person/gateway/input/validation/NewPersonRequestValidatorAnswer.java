@@ -20,10 +20,10 @@ public class NewPersonRequestValidatorAnswer {
 
         return Validation
                 .combine(
-                        Name.validate(request.getName()),
-                        Email.validate(request.getEmails()).mapError(concatByComma),
+                        Name.validateAnswer(request.getName()),
+                        Email.validateAnswer(request.getEmails()).mapError(concatByComma),
                         NewAddressRequestValidatorAnswer.validate(request.getAddress()).mapError(concatByComma),
-                        Age.validate(request.getAge()))
+                        Age.validateAnswer(request.getAge()))
                 .ap((name, emails, address, age) -> NewPersonCommand.builder()
                         .name(name)
                         .emails(emails)

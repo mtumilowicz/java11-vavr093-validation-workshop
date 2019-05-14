@@ -12,12 +12,12 @@ class AgeTest extends Specification {
     
     def "validate - valid"() {
         expect:
-        Age.validate(15) == Validation.valid(Age.of(15))
+        Age.validateAnswer(15) == Validation.valid(Age.of(15))
     }
 
     def "validate - invalid"() {
         expect:
-        Age.validate(-5) == Validation.invalid('Age: -5 is not > 0')
+        Age.validateAnswer(-5) == Validation.invalid('Age: -5 is not > 0')
     }
 
     def "validateWorkshop - valid"() {

@@ -22,7 +22,7 @@ class EmailTest extends Specification {
         )
 
         expect:
-        Email.validate(stringEmails) == Validation.valid(new Emails(emails))
+        Email.validateAnswer(stringEmails) == Validation.valid(new Emails(emails))
     }
 
     def "validate - invalid"() {
@@ -37,7 +37,7 @@ class EmailTest extends Specification {
         )
 
         expect:
-        Email.validate(stringEmails) == Validation.invalid(errors)
+        Email.validateAnswer(stringEmails) == Validation.invalid(errors)
     }
 
     def "validateWorkshop - valid"() {

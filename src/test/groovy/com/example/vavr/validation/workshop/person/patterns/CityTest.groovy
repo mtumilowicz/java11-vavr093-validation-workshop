@@ -12,12 +12,12 @@ class CityTest extends Specification {
     
     def "validate - valid"() {
         expect:
-        City.validate('Warsaw') == Validation.valid(City.of('Warsaw'))
+        City.validateAnswer('Warsaw') == Validation.valid(City.of('Warsaw'))
     }
 
     def "validate - invalid"() {
         expect:
-        City.validate('%') == Validation.invalid('City: % is not valid!')
+        City.validateAnswer('%') == Validation.invalid('City: % is not valid!')
     }
 
     def "validateWorkshop - valid"() {
