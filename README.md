@@ -19,14 +19,26 @@ using hints given in the classes and refactoring plan depicted below
             * `Name`
             * `PostalCode`
         * fix tests
-            * remove tests of validateWorkshop
+            * remove tests of `validateWorkshop`
             * implement new tests - tests for `validate` could be helpful
-    1. phase one
-        * NewAddressRequestValidatorWorkshop
-        * NewPersonRequestValidatorWorkshop
+    1. rewrite `NewAddressRequestValidatorWorkshop` using `Validation` instead 
+        of throwing exception and try-catch blocks (more hints in the class)
+        * fix tests 
+            * rewrite `NewAddressRequestValidatorWorkshopTest` - note that 
+            `NewAddressRequestValidatorAnswerTest` could be helpful
+    1. rewrite `NewPersonRequestValidatorWorkshop` using `Validation` instead 
+        of throwing exception and try-catch blocks (more hints in the class)
+        * fix tests 
+            * rewrite `NewPersonRequestValidatorWorkshopTest` - note that 
+            `NewPersonRequestValidatorWorkshopTest` could be helpful
+    1. rewrite `PersonControllerWorkshop` using `Validation` instead
+        of throwing exception and try-catch blocks (more hints in the class)
+        * fix tests
+            * rewrite `PersonControllerWorkshopTest` - note that
+            `PersonControllerAnswerTest` could be helpful
     1. delete
-        * ErrorMessagesControllerAdvice
-        * ValidationException
+        * `ErrorMessagesControllerAdvice`
+        * `ValidationException`
 * answers: `*Answer`
 # theory in a nutshell
 
