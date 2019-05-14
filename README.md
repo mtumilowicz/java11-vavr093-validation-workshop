@@ -11,9 +11,22 @@
 * on the workshop we will try to rewrite all methods from classes `*Workshop` 
 using hints given in the classes and refactoring plan depicted below
 * refactoring plan:
+    1. rewrite `patterns` using `Validation` instead of throwing exception
+        * method: `validateWorkshop` in classes
+            * `Age`
+            * `City`
+            * `Email`
+            * `Name`
+            * `PostalCode`
+        * fix tests
+            * remove tests of validateWorkshop
+            * implement new tests - tests for `validate` could be helpful
     1. phase one
         * NewAddressRequestValidatorWorkshop
         * NewPersonRequestValidatorWorkshop
+    1. delete
+        * ErrorMessagesControllerAdvice
+        * ValidationException
 * answers: `*Answer`
 # theory in a nutshell
 
