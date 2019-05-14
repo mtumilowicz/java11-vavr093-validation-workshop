@@ -48,8 +48,10 @@ using hints given in the classes and refactoring plan depicted below
 * `Validation` will continue processing accumulating all errors (if any)
 * it is especially useful when doing validation of multiple fields, say a web form, and you want to know 
 all errors encountered, instead of one at a time
-* contrary to Bean Validation standard (JSR-303 and JSR-349) - we dont need any infrastructure 
-providers (AOP, dynamic proxies, DI)
+* contrary to Bean Validation standard (JSR-303 and JSR-349): 
+    * we do not need any infrastructure providers (AOP, dynamic proxies, DI)
+    * bad request is not rejected and can be easily handled in a reasonable way (for example
+    send to patch service)
 * `interface Validation<E, T> extends Value<T>, Serializable`
     * `interface Value<T> extends Iterable<T>`
 * two implementations:
