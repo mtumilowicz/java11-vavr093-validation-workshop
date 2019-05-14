@@ -94,7 +94,8 @@ all errors encountered, instead of one at a time
         ```
     * up to 8 arguments
     * `combine` and `functionN` in `ap` should have the same number of params
-    * `combine` and `functionN` in `ap` should have the same type of params
+    * `Valid` type of `combine` params should be the same as type of arguments of `functionN` 
+    in `ap`
     * `combine` params order corresponds to the order of params in the `functionN` in `ap`
     * if all of `Validations` in `combine` are `Valid`, the `ap(f)` method maps all results 
     to a single value using a function `f`
