@@ -19,7 +19,7 @@ class NewAddressRequestValidatorWorkshop {
      * 
      * hints: 
      *  return Validation
-     *      .combine(City.validateWorkshop,...)
+     *      .combine(City.validateWorkshop(request.getCity()), ...)
      *      .ap((city, ...) -> NewAddressCommand.builder()...)
      */
     static NewAddressCommand validate(NewAddressRequest request) {

@@ -18,8 +18,17 @@ import java.util.function.Function;
  * Created by mtumilowicz on 2018-12-09.
  */
 public class NewPersonRequestValidatorWorkshop {
+    
     private static Function<Seq<String>, String> concatByComma = strings -> strings.mkString(", ");
 
+    /**
+     * should return Validation<Seq<String>, NewPersonCommand>
+     *
+     * hints: 
+     *  return Validation
+     *      combine(Name.validate(request.getName()), ...)
+     *      .ap((name, ...) -> NewPersonCommand.builder()...)
+     */
     public static NewPersonCommand validate(NewPersonRequest request) {
         var errors = new LinkedList<String>();
         Name name = null;
