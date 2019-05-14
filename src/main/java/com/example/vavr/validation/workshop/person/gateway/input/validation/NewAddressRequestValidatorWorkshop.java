@@ -17,8 +17,8 @@ class NewAddressRequestValidatorWorkshop {
     /**
      * should return Validation<Seq<String>, NewAddressCommand>
      * 
-     * hints - use: 
-     *  Validation
+     * hints : 
+     *  return Validation
      *      .combine(City.validateWorkshop,...)
      *      .ap((city, ...) -> NewAddressCommand.builder()...)
      */
