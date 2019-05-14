@@ -53,23 +53,41 @@ all errors encountered, instead of one at a time
 * two implementations:
     * `final class Valid<E, T> implements Validation<E, T>` - contains valid data
     * `final class Invalid<E, T> implements Validation<E, T>` - is an error representation
-* If all of them are successful, the ap(fn) method maps all results to a single value using a function 
-it takes as an argument
-* It must expect the same number of parameters as the number of validation results passed to 
-combine(...) method
-* types of parameters must be the same as values contained by validation results
 * The order of arguments passed to the function corresponds to the order of validation results
 * If at least one of validation results points to invalid data, then ap(fn) methods returns Invalid instance, 
 containing a list of all errors that occurred
 
 # conclusions in a nutshell
 * creating
+    * `static <E, T> Validation<E, T> valid(T value)`
+    * `static <E, T> Validation<E, T> invalid(E error)`
     ```
-   public static Validation<String, Age> validateAnswer(int age) {
-       return VALIDATOR.test(age)
-               ? Validation.valid(new Age(age))
-               : Validation.invalid("Age: " + age + " is not > 0");
-   }
+    private static final IntPredicate PREDICATE = i -> i > 0;
+    
+    public static Validation<String, Age> validateAnswer(int age) {
+        return PREDICATE.test(age)
+                ? Validation.valid(new Age(age))
+                : Validation.invalid("Age: " + age + " is not > 0");
+    }
     ```
-* composing
+* combining
+    * `static <E, T1, ...> Builder<E, T1, ...> 
+        combine(Validation<E, T1> validation1, Validation<E, T2> validation2, ...)`
+    * `public <R> Validation<Seq<E>, R> ap(FunctionN<T1, T2, ..., R> f)`
+    ```
+    return Validation
+            .combine(
+                    City.validateAnswer(request.getCity()),
+                    PostalCode.validateAnswer(request.getPostalCode()))
+            .ap((city, postalCode) -> NewAddressCommand.builder()
+                    .city(city)
+                    .postalCode(postalCode)
+                    .build());
+    ```
+    * up to 8 arguments
+    * `combine` and `functionN` in `ap` should have the same number of params
+    * `combine` and `functionN` in `ap` should have the same type of params
+    * `combine` params order corresponds to the order of params in the `functionN` in `ap`
+    * if all of `Validations` in `combine` are `Valid`, the `ap(f)` method maps all results 
+    to a single value using a function `f`
 * consuming
