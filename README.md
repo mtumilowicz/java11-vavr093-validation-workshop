@@ -94,7 +94,7 @@ all errors encountered, instead of one at a time
         ```
     * up to 8 arguments
     * `combine` and `functionN` in `ap` should have the same number of params
-    * `Valid` type of `combine` params should be the same as type of arguments of `functionN` 
+    * valid type of `combine` params should be the same as type of arguments of `functionN` 
     in `ap`
     * `combine` params order corresponds to the order of params in the `functionN` in `ap`
     * if all of `Validations` in `combine` are `Valid`, the `ap(f)` method maps all results 
@@ -127,4 +127,4 @@ all errors encountered, instead of one at a time
         validation.bimap(..., ...)
         ```
         * `Validation<E2, T2> bimap(Function<? super E, ? extends E2> errorMapper, Function<? super T, ? extends T2> valueMapper)`
-* bimap vs fold - bimap returns `Validation` and fold returns any arbitrary type
+    * bimap vs fold - bimap returns `Validation` and fold returns any arbitrary type
