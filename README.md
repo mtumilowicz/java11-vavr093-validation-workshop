@@ -97,3 +97,25 @@ providers (AOP, dynamic proxies, DI)
     * if at least one of `Validations` is `Invalid`, then `ap(f)` returns `Invalid` with
     all errors aggregated
 * consuming
+    * pattern matching
+        ```
+        return Match(validation).of(
+                Case($Valid($()), ...),
+                Case($Invalid($()), ...)
+        );
+        ```
+    * folding to single value
+        ```
+        return validation.fold(..., ....)
+        ```
+* transforming
+    * mapping
+        ```
+        validation.map(...)
+            .mapError(...)
+        ```
+    * bimapping
+        ```
+        validation.bimap(..., ...)
+        ```
+* bimap vs fold - bimap returns `Validation` and fold returns any arbitrary type
