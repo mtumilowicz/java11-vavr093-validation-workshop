@@ -9,36 +9,37 @@
 * https://github.com/mtumilowicz/java11-jsr303-custom-validation
 * on the workshop we will try to rewrite all methods from classes `*Workshop` 
 using hints given in the classes and refactoring plan depicted below
-* refactoring plan:
-    1. rewrite `patterns` using `Validation` instead of throwing exception
-        * method: `validateWorkshop` in classes
-            * `Age`
-            * `City`
-            * `Email`
-            * `Name`
-            * `PostalCode`
-        * fix tests
-            * remove tests of `validateWorkshop`
-            * implement new tests - tests for `validate` could be helpful
-    1. rewrite `NewAddressRequestValidatorWorkshop` using `Validation` instead 
-        of throwing exception and try-catch blocks (more hints in the class)
-        * fix tests 
-            * rewrite `NewAddressRequestValidatorWorkshopTest` - note that 
-            `NewAddressRequestValidatorAnswerTest` could be helpful
-    1. rewrite `NewPersonRequestValidatorWorkshop` using `Validation` instead 
-        of throwing exception and try-catch blocks (more hints in the class)
-        * fix tests 
-            * rewrite `NewPersonRequestValidatorWorkshopTest` - note that 
-            `NewPersonRequestValidatorWorkshopTest` could be helpful
-    1. rewrite `PersonControllerWorkshop` using `Validation` instead
-        of throwing exception and try-catch blocks (more hints in the class)
-        * fix tests
-            * rewrite `PersonControllerWorkshopTest` - note that
-            `PersonControllerAnswerTest` could be helpful
-    1. delete
-        * `ErrorMessagesControllerAdvice`
-        * `ValidationException`
 * answers: `*Answer`
+
+## refactoring plan:
+1. rewrite `patterns` using `Validation` instead of throwing exception
+    * method: `validateWorkshop` in classes
+        * `Age`
+        * `City`
+        * `Email`
+        * `Name`
+        * `PostalCode`
+    * fix tests
+        * remove tests of `validateWorkshop`
+        * implement new tests - tests for `validate` could be helpful
+1. rewrite `NewAddressRequestValidatorWorkshop` using `Validation` instead 
+    of throwing exception and try-catch blocks (more hints in the class)
+    * fix tests 
+        * rewrite `NewAddressRequestValidatorWorkshopTest` - note that 
+        `NewAddressRequestValidatorAnswerTest` could be helpful
+1. rewrite `NewPersonRequestValidatorWorkshop` using `Validation` instead 
+    of throwing exception and try-catch blocks (more hints in the class)
+    * fix tests 
+        * rewrite `NewPersonRequestValidatorWorkshopTest` - note that 
+        `NewPersonRequestValidatorWorkshopTest` could be helpful
+1. rewrite `PersonControllerWorkshop` using `Validation` instead
+    of throwing exception and try-catch blocks (more hints in the class)
+    * fix tests
+        * rewrite `PersonControllerWorkshopTest` - note that
+        `PersonControllerAnswerTest` could be helpful
+1. delete
+    * `ErrorMessagesControllerAdvice`
+    * `ValidationException`
 
 # theory in a nutshell
 * The Validation control is an applicative functor and facilitates accumulating errors'
@@ -53,9 +54,6 @@ all errors encountered, instead of one at a time
 * two implementations:
     * `final class Valid<E, T> implements Validation<E, T>` - contains valid data
     * `final class Invalid<E, T> implements Validation<E, T>` - is an error representation
-* The order of arguments passed to the function corresponds to the order of validation results
-* If at least one of validation results points to invalid data, then ap(fn) methods returns Invalid instance, 
-containing a list of all errors that occurred
 
 # conclusions in a nutshell
 * creating
@@ -90,4 +88,6 @@ containing a list of all errors that occurred
     * `combine` params order corresponds to the order of params in the `functionN` in `ap`
     * if all of `Validations` in `combine` are `Valid`, the `ap(f)` method maps all results 
     to a single value using a function `f`
+    * if at least one of `Validations` is `Invalid`, then `ap(f)` returns `Invalid` with
+    all errors aggregated
 * consuming
