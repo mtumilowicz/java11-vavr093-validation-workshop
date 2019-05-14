@@ -108,14 +108,18 @@ providers (AOP, dynamic proxies, DI)
         ```
         return validation.fold(..., ....)
         ```
+        * `U fold(Function<? super E, ? extends U> fInvalid, Function<? super T, ? extends U> fValid)`
 * transforming
     * mapping
         ```
         validation.map(...)
             .mapError(...)
         ```
+        * `Validation<E, U> map(Function<? super T, ? extends U> f)`
+        * `Validation<U, T> mapError(Function<? super E, ? extends U> f)`
     * bimapping
         ```
         validation.bimap(..., ...)
         ```
+        * `Validation<E2, T2> bimap(Function<? super E, ? extends E2> errorMapper, Function<? super T, ? extends T2> valueMapper)`
 * bimap vs fold - bimap returns `Validation` and fold returns any arbitrary type
