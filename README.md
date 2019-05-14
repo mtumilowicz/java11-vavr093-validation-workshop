@@ -5,7 +5,6 @@
 # project description
 * https://softwaremill.com/javaslang-data-validation/  
 * https://www.vavr.io/vavr-docs/#_validation  
-* https://www.baeldung.com/vavr-validation-api
 * https://github.com/mtumilowicz/java11-vavr-validation
 * https://github.com/mtumilowicz/java11-jsr303-custom-validation
 * on the workshop we will try to rewrite all methods from classes `*Workshop` 
@@ -40,6 +39,18 @@ using hints given in the classes and refactoring plan depicted below
         * `ErrorMessagesControllerAdvice`
         * `ValidationException`
 * answers: `*Answer`
-# theory in a nutshell
 
+# theory in a nutshell
+* The Validation control is an applicative functor and facilitates accumulating errors'
+* When trying to compose Monads, the combination process will short circuit at the first encountered error
+* But 'Validation' will continue processing the combining functions, accumulating all errors
+* This is especially useful when doing validation of multiple fields, say a web form, and you want to know 
+all errors encountered, instead of one at a time
+* opposite to Bean Validation standard (JSR-303 and JSR-349)
+* we dont need any infrastructure providers (AOP, dynamic proxies, DI)
+* `interface Validation<E, T> extends Value<T>, Serializable`
+    * `interface Value<T> extends Iterable<T>`
+* two implementations:
+    * `final class Valid<E, T> implements Validation<E, T>`
+    * `final class Invalid<E, T> implements Validation<E, T>`
 # conclusions in a nutshell
