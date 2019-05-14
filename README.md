@@ -45,7 +45,7 @@ using hints (given in the classes) and refactoring plan depicted below
 * `Validation` is an applicative functor and facilitates accumulating errors
 * when trying to compose Monads, the combination process will short circuit at the first encountered error
     as getting subsequent wrapped values depends on results of previous calculations
-* `Validation` will continue processing accumulating all errors (if any)
+* `Validation` will continue processing and accumulate all errors (if any)
 * it is especially useful when doing validation of multiple fields, say a web form, and you want to know 
 all errors encountered, instead of one at a time
 * contrary to Bean Validation standard (JSR-303 and JSR-349):
