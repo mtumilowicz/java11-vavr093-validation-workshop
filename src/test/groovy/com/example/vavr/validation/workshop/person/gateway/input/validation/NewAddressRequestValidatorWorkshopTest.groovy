@@ -1,9 +1,8 @@
 package com.example.vavr.validation.workshop.person.gateway.input.validation
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException
+import com.example.vavr.validation.workshop.intrastructure.ValidationException
 import com.example.vavr.validation.workshop.person.domain.NewAddressCommand
 import com.example.vavr.validation.workshop.person.gateway.input.NewAddressRequest
-import com.example.vavr.validation.workshop.person.gateway.input.validation.NewAddressRequestValidatorWorkshop
 import com.example.vavr.validation.workshop.person.patterns.City
 import com.example.vavr.validation.workshop.person.patterns.PostalCode
 import io.vavr.collection.List
@@ -23,7 +22,7 @@ class NewAddressRequestValidatorWorkshopTest extends Specification {
         NewAddressRequestValidatorWorkshop.validate(request)
 
         then:
-        NewPersonRequestValidationException ex = thrown()
+        ValidationException ex = thrown()
         ex.errors == List.of('City: * is not valid!', 'Postal Code: & is not valid!')
     }
 

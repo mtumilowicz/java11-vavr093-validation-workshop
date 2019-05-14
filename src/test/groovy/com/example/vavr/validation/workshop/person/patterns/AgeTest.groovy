@@ -1,6 +1,6 @@
 package com.example.vavr.validation.workshop.person.patterns
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException
+import com.example.vavr.validation.workshop.intrastructure.ValidationException
 import io.vavr.collection.List
 import io.vavr.control.Validation
 import spock.lang.Specification
@@ -30,7 +30,7 @@ class AgeTest extends Specification {
         Age.validateWorkshop(-5)
 
         then:
-        NewPersonRequestValidationException ex = thrown()
+        ValidationException ex = thrown()
         ex.getErrors() == List.of('Age: -5 is not > 0')
     }
 }

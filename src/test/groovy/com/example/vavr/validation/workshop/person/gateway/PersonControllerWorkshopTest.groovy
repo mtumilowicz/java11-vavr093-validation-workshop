@@ -1,6 +1,6 @@
 package com.example.vavr.validation.workshop.person.gateway
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException
+import com.example.vavr.validation.workshop.intrastructure.ValidationException
 import com.example.vavr.validation.workshop.person.domain.PersonRepository
 import com.example.vavr.validation.workshop.person.domain.PersonRequestPatchService
 import com.example.vavr.validation.workshop.person.domain.PersonService
@@ -58,7 +58,7 @@ class PersonControllerWorkshopTest extends Specification {
         controller.newPerson(request)
 
         then:
-        NewPersonRequestValidationException ex = thrown()
+        ValidationException ex = thrown()
         // Alternative syntax: def ex = thrown(InvalidDeviceException)
         ex.errors == List.of(
                 'Name: * is not valid!',

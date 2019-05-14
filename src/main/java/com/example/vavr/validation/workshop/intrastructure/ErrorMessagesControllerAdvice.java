@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 class ErrorMessagesControllerAdvice {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(NewPersonRequestValidationException.class)
+    @ExceptionHandler(ValidationException.class)
     @ResponseBody
-    ErrorMessages newPersonRequestValidationException(@NonNull NewPersonRequestValidationException ex) {
+    ErrorMessages newPersonRequestValidationException(@NonNull ValidationException ex) {
         return ErrorMessages.of(ex.getErrors());
     }
 }

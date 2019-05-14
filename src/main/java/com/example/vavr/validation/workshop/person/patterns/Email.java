@@ -1,7 +1,7 @@
 package com.example.vavr.validation.workshop.person.patterns;
 
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException;
+import com.example.vavr.validation.workshop.intrastructure.ValidationException;
 import com.google.common.base.Preconditions;
 import io.vavr.collection.List;
 import io.vavr.control.Validation;
@@ -45,7 +45,7 @@ public class Email {
     public static Emails validateWorkshop(List<String> emails) {
         var validEmailsMap = emails.collect(Collectors.partitioningBy(VALIDATOR));
         if (validEmailsMap.get(true).isEmpty()) {
-            throw NewPersonRequestValidationException.of(List.ofAll(emails.map(errorMessage)));
+            throw ValidationException.of(List.ofAll(emails.map(errorMessage)));
         }
 
         return new Emails(emails.map(Email::new));

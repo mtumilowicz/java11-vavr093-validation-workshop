@@ -1,6 +1,6 @@
 package com.example.vavr.validation.workshop.person.patterns
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException
+import com.example.vavr.validation.workshop.intrastructure.ValidationException
 import io.vavr.collection.List
 import io.vavr.control.Validation
 import spock.lang.Specification
@@ -30,7 +30,7 @@ class PostalCodeTest extends Specification {
         PostalCode.validateWorkshop('%')
 
         then:
-        NewPersonRequestValidationException ex = thrown()
+        ValidationException ex = thrown()
         ex.getErrors() == List.of('Postal Code: % is not valid!')
     }
     

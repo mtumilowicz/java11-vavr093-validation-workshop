@@ -1,11 +1,10 @@
 package com.example.vavr.validation.workshop.person.gateway.input.validation
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException
+import com.example.vavr.validation.workshop.intrastructure.ValidationException
 import com.example.vavr.validation.workshop.person.domain.NewAddressCommand
 import com.example.vavr.validation.workshop.person.domain.NewPersonCommand
 import com.example.vavr.validation.workshop.person.gateway.input.NewAddressRequest
 import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequest
-import com.example.vavr.validation.workshop.person.gateway.input.validation.NewPersonRequestValidatorWorkshop
 import com.example.vavr.validation.workshop.person.patterns.*
 import io.vavr.collection.List
 import spock.lang.Specification 
@@ -56,7 +55,7 @@ class NewPersonRequestValidatorWorkshopTest extends Specification {
         NewPersonRequestValidatorWorkshop.validate(request)
 
         then:
-        NewPersonRequestValidationException ex = thrown()
+        ValidationException ex = thrown()
         ex.errors == List.of(
                 'Name: % is not valid!',
                 'Email: a is not valid!',

@@ -1,6 +1,6 @@
 package com.example.vavr.validation.workshop.person.patterns
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException
+import com.example.vavr.validation.workshop.intrastructure.ValidationException
 import io.vavr.collection.List
 import io.vavr.control.Validation
 import spock.lang.Specification
@@ -70,7 +70,7 @@ class EmailTest extends Specification {
         Email.validateWorkshop(stringEmails)
 
         then:
-        NewPersonRequestValidationException ex = thrown()
+        ValidationException ex = thrown()
         ex.getErrors() == errors
     }
 

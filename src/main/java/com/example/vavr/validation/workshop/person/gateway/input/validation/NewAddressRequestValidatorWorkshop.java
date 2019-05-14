@@ -1,6 +1,6 @@
 package com.example.vavr.validation.workshop.person.gateway.input.validation;
 
-import com.example.vavr.validation.workshop.intrastructure.NewPersonRequestValidationException;
+import com.example.vavr.validation.workshop.intrastructure.ValidationException;
 import com.example.vavr.validation.workshop.person.domain.NewAddressCommand;
 import com.example.vavr.validation.workshop.person.gateway.input.NewAddressRequest;
 import com.example.vavr.validation.workshop.person.patterns.City;
@@ -21,18 +21,18 @@ class NewAddressRequestValidatorWorkshop {
 
         try {
             city = City.validateWorkshop(request.getCity());
-        } catch (NewPersonRequestValidationException ex) {
+        } catch (ValidationException ex) {
             errors.addAll(ex.getErrors().asJava());
         }
 
         try {
             postalCode = PostalCode.validateWorkshop(request.getPostalCode());
-        } catch (NewPersonRequestValidationException ex) {
+        } catch (ValidationException ex) {
             errors.addAll(ex.getErrors().asJava());
         }
 
         if (!errors.isEmpty()) {
-            throw NewPersonRequestValidationException.of(List.ofAll(errors));
+            throw ValidationException.of(List.ofAll(errors));
         }
 
         return NewAddressCommand.builder()
