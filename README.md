@@ -13,29 +13,26 @@ using hints (given in the classes) and refactoring plan depicted below
 
 ## refactoring plan:
 1. rewrite `patterns` using `Validation` instead of throwing exception
+    * rewrite tests
+        * remove tests of method `validateWorkshop`
+        * implement new tests, note that tests for `validate` method could be helpful
     * method: `validateWorkshop` in classes
         * `Age`
         * `City`
         * `Email`
         * `Name`
         * `PostalCode`
-    * fix tests
-        * remove tests of `validateWorkshop`
-        * implement new tests - tests for `validate` could be helpful
 1. rewrite `NewAddressRequestValidatorWorkshop` using `Validation` instead 
     of throwing exception and try-catch blocks (more hints in the class)
-    * fix tests 
-        * rewrite `NewAddressRequestValidatorWorkshopTest` - note that 
+    * rewrite tests `NewAddressRequestValidatorWorkshopTest` - note that 
         `NewAddressRequestValidatorAnswerTest` could be helpful
 1. rewrite `NewPersonRequestValidatorWorkshop` using `Validation` instead 
     of throwing exception and try-catch blocks (more hints in the class)
-    * fix tests 
-        * rewrite `NewPersonRequestValidatorWorkshopTest` - note that 
+    * rewrite tests `NewPersonRequestValidatorWorkshopTest` - note that 
         `NewPersonRequestValidatorWorkshopTest` could be helpful
 1. rewrite `PersonControllerWorkshop` using `Validation` instead
     of throwing exception and try-catch blocks (more hints in the class)
-    * fix tests
-        * rewrite `PersonControllerWorkshopTest` - note that
+    * rewrite tests `PersonControllerWorkshopTest` - note that
         `PersonControllerAnswerTest` could be helpful
 1. delete
     * `ErrorMessagesControllerAdvice`
@@ -48,7 +45,8 @@ using hints (given in the classes) and refactoring plan depicted below
 * `Validation` will continue processing accumulating all errors (if any)
 * it is especially useful when doing validation of multiple fields, say a web form, and you want to know 
 all errors encountered, instead of one at a time
-* contrary to Bean Validation standard (JSR-303 and JSR-349): 
+* contrary to Bean Validation standard (JSR-303 and JSR-349):
+    * https://github.com/mtumilowicz/java11-jsr303-custom-validation
     * we do not need any infrastructure providers (AOP, dynamic proxies, DI)
     * bad request is not rejected and can be easily handled in a reasonable way (for example
     send to patch service)
