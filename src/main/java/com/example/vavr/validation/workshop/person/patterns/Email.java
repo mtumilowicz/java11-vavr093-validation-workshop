@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 @Value
 public class Email {
-    private static final Predicate<String> VALIDATOR = Pattern.compile("[\\w._%+-]+@[\\w.-]+\\.[\\w]{2,}")
+    private static final Predicate<String> PREDICATE = Pattern.compile("[\\w._%+-]+@[\\w.-]+\\.[\\w]{2,}")
             .asMatchPredicate();
 
     private static final Function<String, String> errorMessage = email -> "Email: " + email + " is not valid!";
@@ -30,20 +30,20 @@ public class Email {
     }
 
     public static Email of(@NonNull String email) {
-        Preconditions.checkArgument(VALIDATOR.test(email));
+        Preconditions.checkArgument(PREDICATE.test(email));
 
         return new Email(email);
     }
 
     public static Validation<List<String>, Emails> validateAnswer(List<String> emails) {
-        return emails.partition(VALIDATOR)
+        return emails.partition(PREDICATE)
                 .apply((successes, failures) -> failures.isEmpty()
                         ? Validation.valid(successes.map(Email::new).transform(Emails::new))
                         : Validation.invalid(failures.map(errorMessage)));
     }
 
     public static Emails validateWorkshop(List<String> emails) {
-        var validEmailsMap = emails.collect(Collectors.partitioningBy(VALIDATOR));
+        var validEmailsMap = emails.collect(Collectors.partitioningBy(PREDICATE));
         if (validEmailsMap.get(true).isEmpty()) {
             throw ValidationException.of(List.ofAll(emails.map(errorMessage)));
         }

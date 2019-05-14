@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 @Value
 public class PostalCode {
-    private static final Predicate<String> VALIDATOR = Pattern.compile("\\d{2}-\\d{3}").asMatchPredicate();
+    private static final Predicate<String> PREDICATE = Pattern.compile("\\d{2}-\\d{3}").asMatchPredicate();
 
     String raw;
 
@@ -24,19 +24,19 @@ public class PostalCode {
     }
 
     public static PostalCode of(@NonNull String postalCode) {
-        Preconditions.checkArgument(VALIDATOR.test(postalCode));
+        Preconditions.checkArgument(PREDICATE.test(postalCode));
 
         return new PostalCode(postalCode);
     }
 
     public static Validation<String, PostalCode> validateAnswer(String postalCode) {
-        return VALIDATOR.test(postalCode)
+        return PREDICATE.test(postalCode)
                 ? Validation.valid(new PostalCode(postalCode))
                 : Validation.invalid("Postal Code: " + postalCode + " is not valid!");
     }
 
     public static PostalCode validateWorkshop(String postalCode) {
-        if (!VALIDATOR.test(postalCode)) {
+        if (!PREDICATE.test(postalCode)) {
             throw ValidationException.of(List.of("Postal Code: " + postalCode + " is not valid!"));
         }
 

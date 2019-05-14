@@ -13,7 +13,7 @@ import java.util.function.IntPredicate;
  */
 @Value
 public class Age {
-    private static final IntPredicate VALIDATOR = i -> i > 0;
+    private static final IntPredicate PREDICATE = i -> i > 0;
 
     int raw;
 
@@ -22,19 +22,19 @@ public class Age {
     }
 
     public static Age of(int age) {
-        Preconditions.checkArgument(VALIDATOR.test(age));
+        Preconditions.checkArgument(PREDICATE.test(age));
 
         return new Age(age);
     }
 
     public static Validation<String, Age> validateAnswer(int age) {
-        return VALIDATOR.test(age)
+        return PREDICATE.test(age)
                 ? Validation.valid(new Age(age))
                 : Validation.invalid("Age: " + age + " is not > 0");
     }
 
     public static Age validateWorkshop(int age) {
-        if (!VALIDATOR.test(age)) {
+        if (!PREDICATE.test(age)) {
             throw ValidationException.of(List.of("Age: " + age + " is not > 0"));
         }
 

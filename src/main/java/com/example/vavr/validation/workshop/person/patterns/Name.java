@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  */
 @Value
 public class Name {
-    private static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
+    private static final Predicate<String> PREDICATE = Pattern.compile("[\\w]+").asMatchPredicate();
 
     String raw;
 
@@ -25,19 +25,19 @@ public class Name {
     }
 
     public static Name of(@NonNull String name) {
-        Preconditions.checkArgument(VALIDATOR.test(name));
+        Preconditions.checkArgument(PREDICATE.test(name));
 
         return new Name(name);
     }
 
     public static Validation<String, Name> validateAnswer(String name) {
-        return VALIDATOR.test(name)
+        return PREDICATE.test(name)
                 ? Validation.valid(new Name(name))
                 : Validation.invalid("Name: " + name + " is not valid!");
     }
 
     public static Name validateWorkshop(String name) {
-        if (!VALIDATOR.test(name)) {
+        if (!PREDICATE.test(name)) {
             throw ValidationException.of(List.of("Name: " + name + " is not valid!"));
 
         }

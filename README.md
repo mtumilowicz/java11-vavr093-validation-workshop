@@ -64,5 +64,12 @@ containing a list of all errors that occurred
 
 # conclusions in a nutshell
 * creating
+    ```
+   public static Validation<String, Age> validateAnswer(int age) {
+       return VALIDATOR.test(age)
+               ? Validation.valid(new Age(age))
+               : Validation.invalid("Age: " + age + " is not > 0");
+   }
+    ```
 * composing
 * consuming

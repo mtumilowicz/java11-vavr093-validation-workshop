@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  */
 @Value
 public class City {
-    private static final Predicate<String> VALIDATOR = Pattern.compile("[\\w]+").asMatchPredicate();
+    private static final Predicate<String> PREDICATE = Pattern.compile("[\\w]+").asMatchPredicate();
 
     String raw;
 
@@ -24,19 +24,19 @@ public class City {
     }
 
     public static City of(@NonNull String city) {
-        Preconditions.checkArgument(VALIDATOR.test(city));
+        Preconditions.checkArgument(PREDICATE.test(city));
 
         return new City(city);
     }
 
     public static Validation<String, City> validateAnswer(String city) {
-        return VALIDATOR.test(city)
+        return PREDICATE.test(city)
                 ? Validation.valid(new City(city))
                 : Validation.invalid("City: " + city + " is not valid!");
     }
 
     public static City validateWorkshop(String city) {
-        if (!VALIDATOR.test(city)) {
+        if (!PREDICATE.test(city)) {
             throw ValidationException.of(List.of("City: " + city + " is not valid!"));
         }
 
