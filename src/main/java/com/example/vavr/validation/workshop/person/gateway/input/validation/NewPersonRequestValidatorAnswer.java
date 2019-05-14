@@ -2,7 +2,6 @@ package com.example.vavr.validation.workshop.person.gateway.input.validation;
 
 import com.example.vavr.validation.workshop.person.domain.NewPersonCommand;
 import com.example.vavr.validation.workshop.person.gateway.input.NewPersonRequest;
-import com.example.vavr.validation.workshop.person.gateway.input.validation.NewAddressRequestAnswerValidator;
 import com.example.vavr.validation.workshop.person.patterns.Age;
 import com.example.vavr.validation.workshop.person.patterns.Email;
 import com.example.vavr.validation.workshop.person.patterns.Name;
@@ -23,7 +22,7 @@ public class NewPersonRequestValidatorAnswer {
                 .combine(
                         Name.validate(request.getName()),
                         Email.validate(request.getEmails()).mapError(concatByComma),
-                        NewAddressRequestAnswerValidator.validate(request.getAddress()).mapError(concatByComma),
+                        NewAddressRequestValidatorAnswer.validate(request.getAddress()).mapError(concatByComma),
                         Age.validate(request.getAge()))
                 .ap((name, emails, address, age) -> NewPersonCommand.builder()
                         .name(name)

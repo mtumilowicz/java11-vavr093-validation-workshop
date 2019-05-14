@@ -2,7 +2,6 @@ package com.example.vavr.validation.workshop.person.gateway.input.validation
 
 import com.example.vavr.validation.workshop.person.domain.NewAddressCommand
 import com.example.vavr.validation.workshop.person.gateway.input.NewAddressRequest
-import com.example.vavr.validation.workshop.person.gateway.input.validation.NewAddressRequestAnswerValidator
 import com.example.vavr.validation.workshop.person.patterns.City
 import com.example.vavr.validation.workshop.person.patterns.PostalCode
 import io.vavr.collection.List
@@ -12,7 +11,7 @@ import spock.lang.Specification
 /**
  * Created by mtumilowicz on 2019-05-12.
  */
-class NewAddressRequestAnswerValidatorTest extends Specification {
+class NewAddressRequestValidatorAnswerTest extends Specification {
     def "test validate - all fields invalid"() {
         given:
         def request = NewAddressRequest.builder()
@@ -21,7 +20,7 @@ class NewAddressRequestAnswerValidatorTest extends Specification {
                 .build()
 
         when:
-        def validation = NewAddressRequestAnswerValidator.validate(request)
+        def validation = NewAddressRequestValidatorAnswer.validate(request)
 
         then:
         validation == Validation.invalid(List.of('City: * is not valid!', 'Postal Code: & is not valid!'))
@@ -35,7 +34,7 @@ class NewAddressRequestAnswerValidatorTest extends Specification {
                 .build()
 
         when:
-        def validation = NewAddressRequestAnswerValidator.validate(request)
+        def validation = NewAddressRequestValidatorAnswer.validate(request)
 
         then:
         validation == Validation.valid(NewAddressCommand.builder()
