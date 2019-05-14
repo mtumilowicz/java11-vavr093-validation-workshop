@@ -26,7 +26,7 @@ public class NewPersonRequestValidatorWorkshop {
      *
      * hints: 
      *  return Validation
-     *      combine(Name.validate(request.getName()), ...)
+     *      combine(Name.validateWorkshop(request.getName()), ...)
      *      .ap((name, ...) -> NewPersonCommand.builder()...)
      */
     public static NewPersonCommand validate(NewPersonRequest request) {
