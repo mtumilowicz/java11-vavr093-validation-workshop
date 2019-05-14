@@ -15,17 +15,28 @@ using hints (given in the classes) and refactoring plan depicted below
 1. rewrite `patterns` using `Validation` instead of throwing exception
     * rewrite tests
         * remove tests of method `validateWorkshop`
-        * implement new tests, note that tests for `validate` method could be helpful
+        * implement new tests, note that tests of `validate` method could be helpful
     * method: `validateWorkshop` in classes
         * `Age`
         * `City`
         * `Email`
         * `Name`
         * `PostalCode`
-1. rewrite `NewAddressRequestValidatorWorkshop` using `Validation` instead 
-    of throwing exception and try-catch blocks (more hints in the class)
-    * rewrite tests `NewAddressRequestValidatorWorkshopTest` - note that 
+1. rewrite `*Workshop` classes using `Validation` instead  of throwing exception and try-catch blocks 
+(more hints in the classes)
+    * `NewAddressRequestValidatorWorkshop`
+        * rewrite tests `NewAddressRequestValidatorWorkshopTest`, note that 
         `NewAddressRequestValidatorAnswerTest` could be helpful
+        * rewrite class
+    * `X`
+        * rewrite tests `XWorkshopTest`, note that 
+        `XAnswerTest` could be helpful
+        * rewrite class
+    * `XWorkshop`
+        * rewrite tests `XWorkshopTest`, note that 
+        `XAnswerTest` could be helpful
+        * rewrite class
+    
 1. rewrite `NewPersonRequestValidatorWorkshop` using `Validation` instead 
     of throwing exception and try-catch blocks (more hints in the class)
     * rewrite tests `NewPersonRequestValidatorWorkshopTest` - note that 
