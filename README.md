@@ -37,21 +37,12 @@ using hints and refactoring plan depicted below
 1. rewrite `*Workshop` classes using `Validation` instead  of throwing exception and try-catch blocks 
 (more hints in the classes)
     * `NewAddressRequestValidatorWorkshop`
-        * rewrite tests `NewAddressRequestValidatorWorkshopTest`, note that 
-        `NewAddressRequestValidatorAnswerTest` could be helpful
-        * rewrite class
     * `NewPersonRequestValidatorWorkshop`
-        * rewrite tests `NewPersonRequestValidatorWorkshopTest`, note that 
-        `NewPersonRequestValidatorAnswerTest` could be helpful
-        * rewrite class
     * `PersonControllerWorkshop`
-        * rewrite tests `PersonControllerWorkshopTest`, note that 
-        `PersonControllerAnswerTest` could be helpful
-        * rewrite class
 1. delete
     * `ErrorMessagesControllerAdvice`
     * `ValidationException`
-1. all tests should pass in this step
+1. all tests `**/*WorkshopAfterRefactor*` should pass in this step
 
 # theory in a nutshell
 * `Validation` is an applicative functor and facilitates accumulating errors
