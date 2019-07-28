@@ -9,7 +9,7 @@ import spock.lang.Specification
  */
 class EmailAnswerTest extends Specification {
 
-    def "validate - valid"() {
+    def "validateAnswer - valid"() {
         given:
         def stringEmails = List.of(
                 'aaa@aaa.pl',
@@ -24,7 +24,7 @@ class EmailAnswerTest extends Specification {
         Email.validateAnswer(stringEmails) == Validation.valid(new Emails(emails))
     }
 
-    def "validate - invalid"() {
+    def "validateAnswer - invalid"() {
         given:
         def stringEmails = List.of(
                 'a',

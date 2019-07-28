@@ -8,12 +8,12 @@ import spock.lang.Specification
  */
 class PostalCodeAnswerTest extends Specification {
 
-    def "validate - valid"() {
+    def "validateAnswer - valid"() {
         expect:
         PostalCode.validateAnswer('00-001') == Validation.valid(PostalCode.of('00-001'))
     }
 
-    def "validate - invalid"() {
+    def "validateAnswer - invalid"() {
         expect:
         PostalCode.validateAnswer('%') == Validation.invalid('Postal Code: % is not valid!')
     }

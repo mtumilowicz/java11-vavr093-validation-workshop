@@ -8,12 +8,12 @@ import spock.lang.Specification
  */
 class NameAnswerTest extends Specification {
 
-    def "validate - valid"() {
+    def "validateAnswer - valid"() {
         expect:
         Name.validateAnswer('Alfred') == Validation.valid(Name.of('Alfred'))
     }
 
-    def "validate - invalid"() {
+    def "validateAnswer - invalid"() {
         expect:
         Name.validateAnswer('%') == Validation.invalid('Name: % is not valid!')
     }

@@ -8,12 +8,12 @@ import spock.lang.Specification
  */
 class CityAnswerTest extends Specification {
     
-    def "validate - valid"() {
+    def "validateAnswer - valid"() {
         expect:
         City.validateAnswer('Warsaw') == Validation.valid(City.of('Warsaw'))
     }
 
-    def "validate - invalid"() {
+    def "validateAnswer - invalid"() {
         expect:
         City.validateAnswer('%') == Validation.invalid('City: % is not valid!')
     }
