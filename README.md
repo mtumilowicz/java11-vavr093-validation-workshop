@@ -8,15 +8,26 @@
 * https://www.vavr.io/vavr-docs/#_validation  
 * https://github.com/mtumilowicz/java11-vavr-validation
 * https://github.com/mtumilowicz/java11-jsr303-custom-validation
-* on the workshop we will try to rewrite all methods / classes with naming convention: `*Workshop` 
-using hints (given in the classes) and refactoring plan depicted below
-* answers: `*Answer`
+* in the workshop we will try to rewrite methods in the classes with naming convention: 
+`com.example.vavr.validation.workshop.*.*Workshop` 
+using hints and refactoring plan depicted below
+* answers: `com.example.vavr.validation.workshop.*.*Answer`
 
 ## refactoring plan:
+1. change in `build.gradle`
+   ```
+   test {
+       exclude '**/**AfterRefactor*'
+   }
+   ```
+   to
+   ```
+   test {
+       exclude '**/**BeforeRefactor*'
+   }
+   ```
+   and we want to fix all failing tests
 1. rewrite `patterns` using `Validation` instead of throwing exception
-    * rewrite tests
-        * remove tests of method `validateWorkshop`
-        * implement new tests, note that tests of `validate` method could be helpful
     * method: `validateWorkshop` in classes
         * `Age`
         * `City`
