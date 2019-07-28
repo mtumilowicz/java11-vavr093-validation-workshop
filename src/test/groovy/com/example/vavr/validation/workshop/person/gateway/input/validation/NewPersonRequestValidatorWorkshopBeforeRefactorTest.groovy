@@ -11,7 +11,7 @@ import spock.lang.Specification
 /**
  * Created by mtumilowicz on 2019-05-13.
  */
-class NewPersonRequestValidatorWorkshopTest extends Specification {
+class NewPersonRequestValidatorWorkshopBeforeRefactorTest extends Specification {
     def "test validate - all fields valid"() {
         given:
         def request = NewPersonRequest.builder()

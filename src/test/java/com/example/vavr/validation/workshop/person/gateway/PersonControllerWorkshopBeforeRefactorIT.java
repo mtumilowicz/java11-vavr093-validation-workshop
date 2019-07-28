@@ -27,7 +27,7 @@ import static org.hamcrest.Matchers.is;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PersonControllerWorkshopIT {
+public class PersonControllerWorkshopBeforeRefactorIT {
 
     @Autowired
     TestRestTemplate restTemplate;
