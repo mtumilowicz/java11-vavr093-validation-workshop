@@ -2,23 +2,11 @@ package com.example.vavr.validation.workshop.person.patterns
 
 import com.example.vavr.validation.workshop.intrastructure.ValidationException
 import io.vavr.collection.List
-import io.vavr.control.Validation
-import spock.lang.Specification
-
+import spock.lang.Specification 
 /**
  * Created by mtumilowicz on 2019-05-14.
  */
-class PostalCodeTest extends Specification {
-
-    def "validate - valid"() {
-        expect:
-        PostalCode.validateAnswer('00-001') == Validation.valid(PostalCode.of('00-001'))
-    }
-
-    def "validate - invalid"() {
-        expect:
-        PostalCode.validateAnswer('%') == Validation.invalid('Postal Code: % is not valid!')
-    }
+class PostalCodeWorkshopBeforeRefactorTest extends Specification {
 
     def "validateWorkshop - valid"() {
         expect:
