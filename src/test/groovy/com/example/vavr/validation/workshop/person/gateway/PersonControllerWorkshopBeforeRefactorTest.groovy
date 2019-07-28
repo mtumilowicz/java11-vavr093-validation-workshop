@@ -13,7 +13,7 @@ import spock.lang.Specification
 /**
  * Created by mtumilowicz on 2019-05-12.
  */
-class PersonControllerWorkshopTest extends Specification {
+class PersonControllerWorkshopBeforeRefactorTest extends Specification {
 
     def "test newPerson - valid request"() {
         given:
